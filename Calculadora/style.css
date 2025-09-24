@@ -6,27 +6,32 @@ body{
 .main-container{
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 70vh;
     flex-direction: row;
 }
 .title-area{
-    width: 50%;
+    width: 90%;
     height: 200px;
     font-size: 35px;
     font-weight: 200;
+    padding-left: 4%;
+
 }
 .title-area h1{
-    font-size: 55px;
+    font-size: 50px;
     font-weight: 200;
 }
 header{
     display: flex;
     width: 100%;
 }
+.logo-area img{
+    padding: 20px 20px 0px 20px
+}
 .links-area{
     display: flex;
     flex-direction: row;
-    width: 40%;
+    width: 50%;
     justify-content: space-evenly;
 }
 .links-area a h1{
@@ -39,7 +44,7 @@ header{
     text-decoration: none;
 }
 .nav-bar-area{
-    background-color: #CCC1BE;
+    background-color: #e2e2e2;
     display: flex;
     width: 100%;
     height: 120px;
@@ -55,24 +60,91 @@ header{
     border-radius: 20px;
     font-family: 'Poppins';
     color: white;
-    font-size: 20px
+    font-size: 20px;
 }
 .login-btn{
     margin-right: 30px;
 }
+.input-container-area{
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 .input-area{
-    width: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 
 }
 .input-container{
-    width: 50%;
+    width: 80%;
     height: 55vh;
+    margin-left: 4%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .response-area{
     width: 50%;
-    height: 70%;
+    height: 87vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+}
+.response-container{
     background-color: #003049;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius:50px;
+    width: 100%;
+    height: 70%;
+}
+.response-container h1{
+    color: white;
+    padding-left: 10%;
+    font-size: 39px;
+}
+.response-container h2{
+    width: 80%;
+    font-size: 20px;
+    color: white;
+    font-weight: 300;
+    margin-left: 10%;
+}
+
+.input-area h3{
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.ipt-calc::placeholder{
+    padding: 10px;
+    font-family: 'Poppins';
+}
+.ipt-calc{
+    width: 60%;
+    height: 30px;
+    border: 0;
+    box-shadow: 1px 3px 2px #cccccc;
+    border-radius: 6px;
+}
+.input-area select{
+    width: 20%;
+    border-radius: 8px;
+    height: 35px;
+    border: 1px solid #cccccc;
+    box-shadow: 1px 3px 2px #cccccc;
+    color: gray;
+}
+.btn-container button{
+    width: 220px;
+    height: 57px;
+    background-color: #F77F00;
+    border: 0;
+    border-radius: 20px;
+    font-family: 'Poppins';
+    color: white;
+    font-size: 20px
 }

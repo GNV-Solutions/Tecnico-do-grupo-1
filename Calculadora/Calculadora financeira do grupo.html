@@ -16,7 +16,7 @@
                 <a href=""><h1>Home</h1></a>
                 <a href=""><h1>Funções</h1></a>
                 <a href=""><h1>Sensor</h1></a>
-                <a href=""><h1>Calculadora Financeira</h1></a>
+                <a href=""><h1 style="color: #F77F00; font-weight: 800;">Calculadora Financeira</h1></a>
                 <a href=""><h1>Equipe</h1></a>
             </div>
             <div class="login-btn">
@@ -26,7 +26,6 @@
     </header>
     <div class="main-container">
         <div class="input-container-area">
-
             <div class="title-area">
                 <h1>Faça simulações financeiras sobre o GNV</h1>
             </div>
@@ -37,6 +36,7 @@
                       type="number"
                       id="input_faturamento"
                       placeholder="Insira o faturamento"
+                      class="ipt-calc"
                     />
                     <h3>
                         Qual a margem de lucro do posto: <br />
@@ -45,6 +45,8 @@
                       type="number"
                       id="input_lucro"
                       placeholder="Insira em porcentagem"
+                      class="ipt-calc"
+
                     />
                     <h3>
                         Qual foi o investimento na construção do posto:<br />
@@ -53,15 +55,18 @@
                       type="number"
                       id="input_investimento"
                       placeholder="Insira o investimento"
+                      class="ipt-calc"
+
                     />
                     <h3>
                         Qual o tamanho do cilindro que explodiu:
                     </h3>
-                    <input
-                      type="text"
-                      id="input_cilindro"
-                      placeholder="Pequeno, médio ou grande"
-                    />
+                    <select name="" id="">
+                        <option value="">Pequeno</option>
+                        <option value="">Médio</option>
+                        <option value="">Grande</option>
+
+                    </select>
                     <br />
                     <br />
                     <div class="btn-container">
@@ -70,12 +75,15 @@
                   </div>
                 </div>
                 </div>
-        </div>
-            <div class="response-area">
-                <div id="div_mensagem">
-
+                <div class="response-area">
+                    <div class="response-container">
+                        <h1>Resultados</h1>
+                        <div id="div_mensagem" class="response">
+                            <h2>Os resultados aparecerão aqui! insira os dados nos campos ao lado.</h1>
+                        </div>
+                    </div>
                 </div>
-            </div>
+        </div>
   </body>
 </html>
 <script>
