@@ -1,144 +1,96 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
   </head>
   <body>
-    <header>
-        <div class="nav-bar-area">
-            <div class="logo-area">
-                <img src="Logo-removebg-preview 1.svg" alt="">
-            </div>
-            <div class="links-area">
-                <a href=""><h1>Home</h1></a>
-                <a href=""><h1>Funções</h1></a>
-                <a href=""><h1>Sensor</h1></a>
-                <a href=""><h1 style="color: #F77F00; font-weight: 800;">Calculadora Financeira</h1></a>
-                <a href=""><h1>Equipe</h1></a>
-            </div>
-            <div class="login-btn">
-                <button>Login</button>
-            </div>
-        </div>
-    </header>
-    <div class="main-container">
-        <div class="input-container-area">
-            <div class="title-area">
-                <h1>Faça simulações financeiras sobre o GNV</h1>
-            </div>
-            <div class="input-container">
-                <div class="input-area">
-                    <h3> Qual o faturamento diário do posto: <br /> <!--alterar para mensal--></h3>
-                    <input
-                      type="number"
-                      id="input_faturamento"
-                      placeholder="Insira o faturamento"
-                      class="ipt-calc"
-                    />
-                    <h3>
-                        Qual a margem de lucro do posto: <br />
-                    </h3>
-                    <input
-                      type="number"
-                      id="input_lucro"
-                      placeholder="Insira em porcentagem"
-                      class="ipt-calc"
+    <div>
+      <h1>Simulador de prejuízo financeiro</h1>
+      <br />
+      Qual o faturamento mensal do posto: <br />
+      <input
+        type="number"
+        id="input_faturamento"
+        placeholder="Insira o faturamento"
+      />
+      <br /><br />
 
-                    />
-                    <h3>
-                        Qual foi o investimento na construção do posto:<br />
-                    </h3>
-                    <input
-                      type="number"
-                      id="input_investimento"
-                      placeholder="Insira o investimento"
-                      class="ipt-calc"
+      Qual a margem de lucro do posto em porcentagem: <br />
+      <input
+        type="number"
+        id="input_lucro"
+        placeholder="Insira em porcentagem"
+      />
+      <br /><br />
 
-                    />
-                    <h3>
-                        Qual o tamanho do cilindro que explodiu:
-                    </h3>
-                    <select name="" id="">
-                        <option value="">Pequeno</option>
-                        <option value="">Médio</option>
-                        <option value="">Grande</option>
+      Qual foi o investimento na construção do posto:<br />
+      <input
+        type="number"
+        id="input_investimento"
+        placeholder="Insira o investimento"
+      />
+      <br /><br />
 
-                    </select>
-                    <br />
-                    <br />
-                    <div class="btn-container">
-                        <button onclick="Calcular()">Calcular prejuízo</button>
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <div class="response-area">
-                    <div class="response-container">
-                        <h1>Resultados</h1>
-                        <div id="div_mensagem" class="response">
-                            <h2>Os resultados aparecerão aqui! insira os dados nos campos ao lado.</h1>
-                        </div>
-                    </div>
-                </div>
-        </div>
+      Qual o tamanho do cilindro que explodiu: <br />
+      <select id="input_cilindro">
+        <option value="10">10%</option>
+        <option value="20">20%</option>
+        <option value="50">50%</option>
+      </select>
+      <br /><br />
+
+      <button onclick="Calcular()">Calcular prejuízo</button>
+    </div>
+
+    <div id="div_mensagem"></div>
   </body>
 </html>
+
 <script>
   var diaFechado = 0;
   var prejuizoTotal = 0;
-  var faturamento = 0;
-  var porcentagemLucro = 0;
-  var estrutura = 0;
-  var cilindro = 0;
-  var porcentagemDestruicao = 0;
-  var lucroDiario = 0;
   function Calcular() {
-    faturamento = Number(input_faturamento.value);
-    porcentagemLucro = Number(input_lucro.value);
-    estrutura = Number(input_investimento.value);
+    var faturamento = Number(input_faturamento.value);
+    var porcentagemLucro = Number(input_lucro.value);
+    var estrutura = Number(input_investimento.value);
+    var cilindro = input_cilindro.value;
+    var porcentagemDestruicao = 0;
+    var faturamentodiario = faturamento / 30;
+    var lucroDiario = (porcentagemLucro / 100) * faturamentodiario;
 
-    ipt_cilindro = input_cilindro.value;
-    cilindro = ipt_cilindro.toLowerCase()
-    porcentagemDestruicao = 0;
-    lucroDiario = (porcentagemLucro / 100) * faturamento;
-
-    if (cilindro == "Pequeno") {
-      //cilindros leves
+    if (cilindro == 10) {
       diaFechado = 3;
       porcentagemDestruicao = 0.1;
-      estrutura *= porcentagemDestruicao; // Prejuizo de acordo com a porcentagem de destruição da estrutura
-      faturamento *= diaFechado; // Quantidade de dias de prejuízo do faturamento por conta de paralização
-      prejuizoTotal = estrutura + faturamento;
+      estrutura *= porcentagemDestruicao;
+      faturamentodiario *= diaFechado;
+      prejuizoTotal = estrutura;
     }
-    if (cilindro == "Médio") {
-      // cilindros médios
-      diaFechado = 10;
-      porcentagemDestruicao = 0.3;
-      estrutura *= porcentagemDestruicao; // Prejuizo de acordo com a porcentagem de destruição da estrutura
-      faturamento *= diaFechado; // Quantidade de dias de prejuízo do faturamento por conta de paralização
-      prejuizoTotal = estrutura + faturamento;
+    if (cilindro == 20) {
+      diaFechado = 7;
+      porcentagemDestruicao = 0.20;
+      estrutura *= porcentagemDestruicao;
+      faturamentodiario *= diaFechado;
+      prejuizoTotal = estrutura;
     }
-    if (cilindro == "Grande") {
-      //cilindros grandes
-      diaFechado = 30;
+    if (cilindro == 50) {
+      diaFechado = 21;
       porcentagemDestruicao = 0.5;
-      estrutura *= porcentagemDestruicao; //Prejuizo de acordo com a porcentagem de destruição da estrutura
-      faturamento *= diaFechado; // Quantidade de dias de prejuízo do faturamento por conta de paralização
-      prejuizoTotal = estrutura + faturamento;
+      estrutura *= porcentagemDestruicao;
+      faturamentodiario *= diaFechado;
+      prejuizoTotal = estrutura;
     }
 
     var diaRecuperacao = prejuizoTotal / lucroDiario;
     div_mensagem.innerHTML = `O prejuízo estimado em caso de acidente envolvendo um cilindro de tamanho <b>${cilindro}</b>, que tem um
-            percentual de explosão da estrutura de
+            percentual de explosão da estrutura de 
             <b>${porcentagemDestruicao * 100}%</b> envolve valores como: <br>
             <br> A destruição e reconstrução da estrutura do posto, além da compra de dispensers e equipamentos novos,
             que chega a R$${estrutura}.
-            <br> A perda no faturamento devido à paralisação de ${diaFechado} dias no posto, na qual chega a R$${faturamento}.
-            <br> <br> <b> Total de prejuízo estimado: R$ ${prejuizoTotal}.
-            </b> <br> <br> O período estimado para recuperar o prejuízo de R${prejuizoTotal}
-            <br> será de ~${diaRecuperacao.toFixed()} dias, dado o lucro diário de R$${lucroDiario}.`;
+            <br> A perda no faturamento devido à paralisação de ${diaFechado} dias no posto, na qual chega a R$${faturamentodiario.toFixed()}.
+            <br> <br> <b> Total de prejuízo estimado: R$ ${prejuizoTotal.toFixed(1)}.
+            </b> <br> <br> O período estimado para recuperar o prejuízo de R$${prejuizoTotal.toFixed(1)}
+            <br> será de ~${diaRecuperacao.toFixed(1)} dias, dado o lucro diário de R$${lucroDiario.toFixed(2)}.`;
   }
 </script>
