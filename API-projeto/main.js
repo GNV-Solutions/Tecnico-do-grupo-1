@@ -21,7 +21,7 @@ let poolBancoDados = mysql.createPool(
 host: 'localhost',
 user: 'aluno',
 password: 'sptech',
-database: 'medida',
+database: 'gnv_solution',
 port: 3306
 }
 ).promise();
