@@ -33,7 +33,7 @@
       />
       <br /><br />
 
-      Qual o tamanho do cilindro que explodiu: <br />
+      Qual o impacto do acidente no estabelecimento(percentual destruído)<br/>
       <select id="input_cilindro">
         <option value="10">10%</option>
         <option value="20">20%</option>
@@ -50,8 +50,9 @@
 
 <script>
   var diaFechado = 0;
-  var prejuizoTotal = 0;
+ 
   function Calcular() {
+    var prejuizoTotal = 0;
     var faturamento = Number(input_faturamento.value);
     var porcentagemLucro = Number(input_lucro.value);
     var estrutura = Number(input_investimento.value);
@@ -65,21 +66,21 @@
       porcentagemDestruicao = 0.1;
       estrutura *= porcentagemDestruicao;
       faturamentodiario *= diaFechado;
-      prejuizoTotal = estrutura;
+      prejuizoTotal = estrutura + Number(faturamentodiario);
     }
     if (cilindro == 20) {
       diaFechado = 7;
       porcentagemDestruicao = 0.20;
       estrutura *= porcentagemDestruicao;
       faturamentodiario *= diaFechado;
-      prejuizoTotal = estrutura;
+      prejuizoTotal = estrutura + Number(faturamentodiario);
     }
     if (cilindro == 50) {
       diaFechado = 21;
       porcentagemDestruicao = 0.5;
       estrutura *= porcentagemDestruicao;
       faturamentodiario *= diaFechado;
-      prejuizoTotal = estrutura;
+      prejuizoTotal = estrutura + Number(faturamentodiario);
     }
 
     var diaRecuperacao = prejuizoTotal / lucroDiario;
@@ -88,8 +89,8 @@
             <b>${porcentagemDestruicao * 100}%</b> envolve valores como: <br>
             <br> A destruição e reconstrução da estrutura do posto, além da compra de dispensers e equipamentos novos,
             que chega a R$${estrutura}.
-            <br> A perda no faturamento devido à paralisação de ${diaFechado} dias no posto, na qual chega a R$${faturamentodiario.toFixed()}.
-            <br> <br> <b> Total de prejuízo estimado: R$ ${prejuizoTotal.toFixed(1)}.
+            <br> A perda no faturamento devido à paralisação de ${diaFechado} dias no posto, na qual chega a R$${faturamentodiario.toFixed(0)}.
+            <br> <br> <b> Total de prejuízo estimado: R$ ${prejuizoTotal.toFixed(0)}.
             </b> <br> <br> O período estimado para recuperar o prejuízo de R$${prejuizoTotal.toFixed(1)}
             <br> será de ~${diaRecuperacao.toFixed(1)} dias, dado o lucro diário de R$${lucroDiario.toFixed(2)}.`;
   }
