@@ -1,0 +1,52 @@
+/*CSS DO HEADER*/
+
+header{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: space-evenly;
+}
+.nav-header{
+    width: 70%;
+    display: flex;
+    align-items: center;
+}
+.nav-header ul{
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+    list-style: none;
+}
+.nav-header ul li a{
+    font-family: 'Poppins';
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+
+}
+.logo-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 15%;
+}
+.login-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 15%;
+}
+.login-btn{
+    padding: 0.5em 2em;
+    border-radius: 30px;
+    border: 0;
+    font-family: 'Poppins';
+    color: white;
+    font-size: 20px;
+    font-weight:normal;
+    background-color: #2A9A90;
+}
