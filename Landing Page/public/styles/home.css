@@ -50,6 +50,8 @@
     background-color: white;
     color: black;
     cursor: pointer;
+    padding: 0.9em 2.3em;
+
 }
 .btn-info{
     padding: 0.7em 2em;

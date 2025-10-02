@@ -24,7 +24,12 @@ header{
     color: black;
     font-size: 20px;
     text-decoration: none;
+    transition: 200ms;
 
+}
+.nav-header ul li a:hover{
+    color: #2A9A90;
+    font-size: 22px;
 }
 .logo-header{
     display: flex;
@@ -33,6 +38,15 @@ header{
     height: 100%;
     width: 15%;
 }
+.logo-header a img{
+    width: 100%;
+    transition: 200ms;
+}
+.logo-header a img:hover{
+    width: 110%;
+
+}
+
 .login-header{
     display: flex;
     align-items: center;
@@ -49,4 +63,10 @@ header{
     font-size: 20px;
     font-weight:normal;
     background-color: #2A9A90;
+    cursor: pointer;
+    transition: 200ms;
+}
+.login-btn:hover{
+    padding: 0.6em 2.2em;
+
 }
