@@ -99,20 +99,20 @@
 }
 .card1{
     background-color:#289A90 ;
-    width: 453px;
+    width: 353px;
     height: 493px;
     margin-bottom: 100px;
 
 }
 .card2{
     background-color:#F77F00 ;
-    width: 453px;
+    width: 353px;
     height: 493px;
     margin-top: 100px;
 }
 .card3{
     background-color:#003049 ;
-    width: 453px;
+    width: 353px;
     height: 493px;
     margin-bottom: 100px;
 
@@ -143,6 +143,180 @@
 }
 
 
+/* adições Breno */ 
+
+/* pagina4 início */
+
+.pagina4-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #003049;
+    color: white;
+    font-family: 'Poppins';
+    gap: 30px;
+    height: 100vh;
+     }
+
+.pagina4-container img{
+    height: 80vh;
+    width: auto;
+    background-size: 50% 100%;
+    background-position: left top;
+    margin: 0;
+    height: 100vh;
+    
+
+}
+
+
+
+.title-section-pagina4-container p{
+    font-weight: 700;
+    font-size: 36px;
+    text-align: center;
+    color: white;
+
+
+
+}
+
+.text-section-pagina4-container p{
+    font-weight: 300;
+    font-size: 22px ;
+    color: white;
+    margin-right: 20px;
+    line-height: 1.5;
+
+
+
+}
+/* pagina4 fim */
+
+
+/* pagina 5 início */ 
+
+.pagina5-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Poppins';
+    gap: 60px;
+    height: 100vh;
+    background-color: white;
+    padding: 40px 80px;
+
+}
+
+.pagina5-container img{
+    height: 70vh;
+    width: auto;
+    margin: 0;
+    align-self: center;
+    gap: 30px;
+    
+
+
+}
+
+
+.title-section-pagina5-container h1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+    color: #2A9A90;
+    font-weight: bolder;
+    font-size: 60px;
+    
+}
+
+.text-section-pagina5-container h2{
+    font-size: 26px;
+}
+
+.text-section-pagina5-container h3{
+    font-weight: 500;
+}
+
+.text-section-pagina5-container h4{
+    font-weight: 350;
+}
+
+
+/* pagina5 fim */ 
+
+
+/*footer INÍCIO */ 
+
+.footer {
+    width: auto;
+    height: auto;
+    background-color: #2A9A90;
+    color: white;
+    font-family: 'Poppins';
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+
+    padding: 40px 20px
+
+}
+
+.footer-column h4 img{
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+
+}
+
+.footer-column h3{
+    font-weight: 400px;
+    font-size: 22px;
+}
+
+.footer-column h4{
+    display: inline-flex;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.footer-column h5{
+    text-align: center;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+
+.icones {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    
+
+}
+
+.footer-bottom {
+    height: auto;
+    width: 100%;
+    background-color: #00403A;
+    font-family: 'Poppins';
+    text-align: center;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+/*footer FIM */ 
 
 
 
