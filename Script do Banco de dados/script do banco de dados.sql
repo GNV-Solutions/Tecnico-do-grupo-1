@@ -73,7 +73,10 @@ INSERT INTO posto (idPosto ,nome_posto, dthora, fkUsuarioPosto) VALUES
 -- Tabela Arduino / Sensor
 -- ==========================================
 CREATE TABLE arduinoSensor (
-idSensor INT PRIMARY KEY AUTO_INCREMENT,
+idSensor INT AUTO_INCREMENT,
+fkPostoSensor INT,
+    CONSTRAINT pk_arduinoSensor 
+        PRIMARY KEY (idSensor, fkPostoSensor),
 num_sensor INT,
 porcentagem_gas DECIMAL(4,1),
 dtHora_sensor DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -88,24 +91,21 @@ fkChamadoSensor INT,
 fkEstoqueSensor INT, 
 	CONSTRAINT fkEstoqueSensor 
 		FOREIGN KEY (fkEstoqueSensor)
-			REFERENCES estoqueLote(idEstoque),
-fkPostoSensor INT,
-    CONSTRAINT fkPostoSensor 
-		FOREIGN KEY (fkPostoSensor)
-			REFERENCES posto (idPosto)    
+			REFERENCES estoqueLote(idEstoque)
 );
 
-INSERT INTO arduinoSensor (num_sensor, porcentagem_gas, fkUsuarioSensor, fkChamadoSensor, fkEstoqueSensor, fkPostoSensor) VALUES
-(01, 2.5, 1, 1, 1, 1),
-(01, 3.8, 1, 2, 2, 2),
-(02, 1.2, 3, 3, 3, 2),
-(03, 4.5, 1, NULL, 1, 1),
-(04, 0.9, 2, NULL, 2, 2);
+INSERT INTO arduinoSensor (num_sensor, fkPostoSensor, porcentagem_gas, fkUsuarioSensor, fkChamadoSensor, fkEstoqueSensor) VALUES
+(1, 1, 2.5, 1, 1, 1),
+(1, 2, 3.8, 2, 2, 2),
+(2, 3, 1.2, 3, 3, 2),
+(3, 4, 4.5, NULL, 1, 1),
+(4, 5, 0.9, NULL, 2, 2);
 
 -- ==========================================
 -- Verificar todas as tabelas e dados
 -- ==========================================
 SHOW TABLES;
+
 truncate table usuario;
 truncate table chamadoManutencao;
 truncate table estoqueLote;
@@ -180,8 +180,7 @@ LEFT JOIN chamadoManutencao AS c
     
 -- visão geral 
 SELECT
-    a.idSensor AS 'Sensor',
-    a.num_sensor  AS 'Número sensor',
+    a.num_sensor  AS 'ID sensor',
     a.porcentagem_gas AS 'Porcentagem do gás',
     u.nomeResp AS 'Responsavel',
     p.nome_posto AS'Posto',
