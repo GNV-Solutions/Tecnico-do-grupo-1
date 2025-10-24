@@ -1,69 +1,70 @@
-.home-container{
-    display: flex;
-    width: 100%;
-    background-color: black;
-    height: calc(100vh - 100px);
-    background-image: url('../../assets/background-home.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.home-container {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  height: calc(100vh - 100px);
+  background-image: url('../../assets/background-home2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.content-section-home-container{
-    width: 50%;
-    height: 80%;
-    margin: 7% 0% 0% 5%;
-    display: flex;
-    flex-direction: column;
+.content-section-home-container {
+  width: 50%;
+  height: 80%;
+  margin: 7% 0% 0% 5%;
+  display: flex;
+  flex-direction: column;
 }
-.title-section-home-container{
-    font-family: 'Poppins';
-    width: 90%;
-    color: white;
-    font-size: 48px;
-    font-weight: bold;
+.title-section-home-container {
+  font-family: 'Poppins';
+  width: 90%;
+  color: white;
+  font-size: 48px;
+  font-weight: bold;
 }
-.desc-section-home-container{
-    color: white;
-    width: 90%;
-    font-weight: 200;
-    font-family: 'Poppins';
-    font-size: 18px;
+.desc-section-home-container {
+  color: white;
+  width: 90%;
+  font-weight: 200;
+  font-family: 'Poppins';
+  font-size: 18px;
 }
-.button-section-home-container{
-    width: 56%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 20%;
+.button-section-home-container {
+  width: 56%;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  height: 20%;
 }
-.btn-orc{
-    padding: 0.7em 2em;
-    background-color: transparent;
-    color: white;
-    font-family: 'Poppins';
-    border: 2px solid white;
-    border-radius: 25px;
-    font-size: 20px;
-    transition: 300ms;
+.btn-orc {
+  white-space: nowrap;
+  padding: 0.7em 2em;
+  background-color: transparent;
+  color: white;
+  font-family: 'Poppins';
+  border: 2px solid white;
+  border-radius: 25px;
+  font-size: 20px;
+  transition: 300ms;
 }
-.btn-orc:hover{
-    background-color: white;
-    color: black;
-    cursor: pointer;
-    padding: 0.9em 2.3em;
-
+.btn-orc:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 0.9em 2.3em;
 }
-.btn-info{
-    padding: 0.7em 2em;
-    background-color: #F77F00;
-    color: white;
-    font-size: 20px;
-    font-family: 'Poppins';
-    border: 0;
-    border-radius: 25px;
-    transition: 100ms;
+.btn-info {
+  white-space: nowrap;
+  padding: 0.7em 2em;
+  background-color: #f77f00;
+  color: white;
+  font-size: 20px;
+  font-family: 'Poppins';
+  border: 0;
+  border-radius: 25px;
+  transition: 100ms;
 }
-.btn-info:hover{
-    padding: 0.9em 2.3em;
-    cursor: pointer;
+.btn-info:hover {
+  padding: 0.9em 2.3em;
+  cursor: pointer;
 }
