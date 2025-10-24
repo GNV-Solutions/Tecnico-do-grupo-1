@@ -1,5 +1,5 @@
 -- Criação do banco de dados
--- CREATE DATABASE gnv_solutions_v1;
+CREATE DATABASE gnv_solutions_v1;
 USE gnv_solutions_v1;
 
 -- ==========================================

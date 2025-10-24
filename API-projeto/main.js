@@ -20,9 +20,9 @@ let poolBancoDados = mysql.createPool(
 {
 host: 'localhost',
 user: 'aluno',
-password: 'sptech',
-database: 'gnv_solution',
-port: 3306
+password: 'Sptech#2024',
+database: 'gnv_solutions_v1',
+port: 3307
 }
 ).promise();
 
