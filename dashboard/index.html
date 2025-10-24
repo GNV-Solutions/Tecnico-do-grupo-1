@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Gás Solutions</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="IMGS/LOGO DA EMPRESA.png" alt="Solutions Logo">
+      <span>Solutions</span>
+    </div>
+    <div class="notif">🔔</div>
+  </header>
+
+  <main class="container">
+    <!-- Cards Superiores -->
+    <section class="cards">
+      <div class="card green">
+        <h3>Nível Médio de Gás (24h)</h3>
+        <p>22%</p>
+        <div class="tag">Seguro</div>
+        <span class="growth">▲10.0%</span>
+      </div>
+
+      <div class="card orange">
+        <h3>Alertas Críticos</h3>
+        <p>4</p>
+        <span class="growth">▲22% Mês</span>
+      </div>
+
+      <div class="card teal">
+        <h3>Inspeções Realizadas</h3>
+        <p>24.567</p>
+        <span class="growth">▲12% Mês</span>
+      </div>
+
+      <div class="card red">
+        <h3>Índice de Segurança (%)</h3>
+        <p>72%</p>
+        <span class="drop">▼7% Em média</span>
+      </div>
+    </section>
+
+    <!-- Gráfico Principal -->
+    <section class="main-box">
+      <div class="main-header">
+        <div>
+          <h2>Gás p/ Sensor</h2>
+          <span class="safe">🟢 Níveis seguros</span>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="gasChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Parte Inferior -->
+    <section class="bottom-section">
+      <div class="sensor-table">
+        <h3>Sensores</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome do sensor</th>
+              <th>Dispenser</th>
+              <th>Age</th>
+              <th>% Gás</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sensor 1</td>
+              <td>Dispenser 1</td>
+              <td>22</td>
+              <td>20%</td>
+              <td><span class="status operando">Operando</span></td>
+            </tr>
+            <tr>
+              <td>Sensor 2</td>
+              <td>Dispenser 2</td>
+              <td>24</td>
+              <td>65%</td>
+              <td><span class="status atencao">Atenção</span></td>
+            </tr>
+            <tr>
+              <td>Sensor 3</td>
+              <td>Dispenser 3</td>
+              <td>28</td>
+              <td>21%</td>
+              <td><span class="status operando">Operando</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="donut">
+        <h3>Leituras Fora do Padrão (%)</h3>
+        <canvas id="donutChart" class="chart-donut"></canvas>
+        <small>856 no total</small>
+      </div>
+    </section>
+  </main>
+
+<script>
+  // ================== Gráfico de Linhas com Gradiente ==================
+  const ctx = document.getElementById('gasChart').getContext('2d');
+
+  // Gradientes suaves
+  const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
+  gradient1.addColorStop(0, 'rgba(42, 154, 144, 0.5)');
+  gradient1.addColorStop(1, 'rgba(42, 154, 144, 0)');
+
+  const gradient2 = ctx.createLinearGradient(0, 0, 0, 400);
+  gradient2.addColorStop(0, 'rgba(247, 127, 0, 0.4)');
+  gradient2.addColorStop(1, 'rgba(247, 127, 0, 0)');
+
+  const gradient3 = ctx.createLinearGradient(0, 0, 0, 400);
+  gradient3.addColorStop(0, 'rgba(26, 43, 136, 0.4)');
+  gradient3.addColorStop(1, 'rgba(26, 43, 136, 0)');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['08h', '10h', '12h', '14h', '16h', '18h', '20h'],
+      datasets: [
+        {
+          label: 'Sensor 1',
+          data: [45, 48, 42, 58, 47, 59, 61],
+          borderColor: '#2A9A90',
+          backgroundColor: gradient1,
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointBackgroundColor: '#2A9A90'
+        },
+        {
+          label: 'Sensor 2',
+          data: [15, 22, 28, 68, 59, 52, 50],
+          borderColor: '#F77F00',
+          backgroundColor: gradient2,
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointBackgroundColor: '#F77F00'
+        },
+        {
+          label: 'Sensor 3',
+          data: [35, 33, 30, 25, 55, 52, 56],
+          borderColor: '#1A2B88',
+          backgroundColor: gradient3,
+          borderWidth: 3,
+          fill: true,
+          tension: 0.4,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointBackgroundColor: '#1A2B88'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'index',
+        intersect: false
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { usePointStyle: true, boxWidth: 10, font: { size: 12 } }
+        },
+        tooltip: {
+          enabled: true,
+          backgroundColor: '#ffffff',
+          titleColor: '#333',
+          bodyColor: '#333',
+          borderColor: '#eee',
+          borderWidth: 1
+        }
+      },
+      animation: {
+        duration: 1500,
+        easing: 'easeOutQuart'
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: { display: true, text: '% Gás', color: '#666' },
+          grid: { color: '#ECEEF6' },
+          ticks: { color: '#666' }
+        },
+        x: {
+          title: { display: true, text: 'Horário', color: '#666' },
+          grid: { color: '#F5F6FA' },
+          ticks: { color: '#666' }
+        }
+      }
+    }
+  });
+
+  // ================== Gráfico de Rosca ==================
+  const ctxDonut = document.getElementById('donutChart');
+  new Chart(ctxDonut, {
+    type: 'doughnut',
+    data: {
+      labels: ['Fora', 'Normal'],
+      datasets: [{
+        data: [65, 35],
+        backgroundColor: ['#F77F00', '#2A9A90'],
+        hoverOffset: 6
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { display: true, position: 'bottom' }
+      }
+    }
+  });
+</script>
+</body>
+</html>
