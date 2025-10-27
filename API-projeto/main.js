@@ -61,19 +61,19 @@ if (HABILITAR_OPERACAO_INSERIR) {
 
 // este insert irá inserir os dados na tabela "arduinoSensor"
 await poolBancoDados.execute(
-'INSERT INTO arduinoSensor (num_sensor, porcentagem_gas) VALUES (1, ?)',
+'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (101, ?)',
 [sensorPorcentagem]
 );
 console.log("valores inseridos no banco: " + sensorPorcentagem);
 
 await poolBancoDados.execute(
-'INSERT INTO arduinoSensor (num_sensor, porcentagem_gas) VALUES (2, ?)',
+'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (102, ?)',
 [sensorPorcentagem + 20]
 );
 console.log("valores inseridos no banco: " + sensorPorcentagem);
 
 await poolBancoDados.execute(
-'INSERT INTO arduinoSensor (num_sensor, porcentagem_gas) VALUES (3, ?)',
+'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (103, ?)',
 [sensorPorcentagem - 15]
 );
 console.log("valores inseridos no banco: " + sensorPorcentagem);
