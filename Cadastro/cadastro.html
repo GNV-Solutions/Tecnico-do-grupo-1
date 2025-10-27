@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="./style.cad.css">
+    <title>GNV SOLUTIONS | CADASTRO</title>
+</head>
+
+<body>
+    <div class="principal">
+        <div class="container">
+            <div class="conteudo">
+                <h3 class="titulo">Junte-se a nós</h3>
+                <span class="span">Complete esses passos para <br> utilizar nosso serviço</span>
+                <div class="cards">
+                    <div class="box1">
+                        <div class="bola">1</div>
+                        <p><a href="./Cadastro"></a></p>
+                        <span> ⇣ </span>
+                    </div>
+
+                    <div class="box2">
+                        <div class="bola">2</div>
+                        <p><a href="./Login"></a>Login</p>
+                        <span> ⇣ </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container2">
+            <img src="./Assets/LOGO DA EMPRESA.png" alt="">
+            <h3>Crie sua conta</h3>
+            <span class="span2">Registre suas credenciais para <br> entrar em sua conta</span>
+            <div class="campos"> <br>
+                <p>Nome do usuário</p>
+                <input type="text" id="input_nome" placeholder="    Ex: Ana Matos"> <br>
+                <p>CNPJ</p>
+                <input oninput="mascara()" type="text" id="input_cnpj" maxlength="18" placeholder=" Ex. 00623904000173"> <br>
+                <p>E-mail</p>
+                <input type="text" id="input_email" placeholder="  Ex. Anamatos@gmail.com"> <br>
+                <p>Senha</p>
+                <input type="text" id="input_senha" placeholder="  Insira sua senha"> <br>
+                <p>Confirmar senha</p>
+                <input type="text" id="input_senha2" placeholder="   Redigite sua senha"> <br>
+                <span class="rodape">Deve ter mais de 8 caracteres</span><br>
+                <div id="res"></div>
+            </div>
+            <div class="botao">
+                <button onclick="entrar()">Entrar</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+
+
+
+  function mascara() {
+
+  var cnpj = document.getElementById('input_cnpj')
+  //var cnpjTamanho = cnpj.length
+
+   if( cnpj.value.length == 2 ||  cnpj.value.length == 6){
+   cnpj.value += "."
+   }
+   if(cnpj.value.length == 10){
+    cnpj.value += "/"
+   }
+   if(cnpj.value.length == 15){
+    cnpj.value += "-"
+   }
+   console.log(cnpj)
+
+
+}
+
+    
+
+    function entrar() {
+        var nome = input_nome.value;
+        var cnpj = input_cnpj.value;
+        var cnpjTamanho = cnpj.length
+        var email = input_email.value;
+        var senha = input_senha.value;
+        var senhaCon = input_senha2.value;
+        var senhaTamanho = senha.length
+        var senhaMinuscula = senha.toLowerCase()
+
+        
+
+        
+
+        // EMAIL
+
+        if (email.includes('@gmail.com') || email.includes('@sptech.school')) {
+            res.innerHTML = ''
+             
+        }else{
+            res.innerHTML = ''
+            msg = `<span style="color: red; font-weight: bold;"> *Formato de email inválido </span>`
+        }
+        // SENHA
+         
+        var cont = 0
+        var numeros = '1234567890'
+        var senhaTemNum = false 
+        var msg = ''
+        while (cont < senhaTamanho) {
+             console.log(`CHEGOU AQUI NO WHILLE`)
+    
+            if (senha.includes(numeros[cont])) {
+                senhaTemNum = true
+                break;
+            }else {
+                 msg = `<span style="color: red; font-weight: bold;"> *Senha não atende todos requisitos </span>`
+            }
+             cont++
+
+            console.log(msg)
+        }
+        if (senhaTamanho >= 8 && senha != senhaMinuscula && senhaTemNum == true && (senha.includes('@') || senha.includes('&') || senha.includes('#') || senha.includes('$') || senha.includes('!'))  ) {
+
+            
+            console.log(`CHEGOU AQUI`)
+        }else{
+            msg = `<span style="color: red; font-weight: bold;">*Senha deve ter pelo menos 1 caracter especial,<br>1 número e 1 letra maiuscula.</span>`
+             console.log(`CHEGOU AQUI NO ERRO`)
+
+        }
+
+        //CONFIMAÇAO DE SENHA
+        if (senhaCon == senha) {
+            
+        }else{
+             msg = `<span style="color: red; font-weight: bold;"> *Confirmação de senha inválida.</span>`
+        }
+
+        // VALIDAÇÃO DE CAMPOS VAZIOS
+
+           if (nome == '' || cnpj == '' || email == '' || senha == '' || senhaCon == '') {
+            res.innerHTML = ''
+            msg += `<span style="color: red; font-weight: bold;"> *Ainda faltam campos para preencher!</span>`
+        }
+
+        res.innerHTML = msg
+        console.log(msg)
+
+    }
+
+</script>

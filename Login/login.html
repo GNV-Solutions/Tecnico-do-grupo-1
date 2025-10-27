@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>GNV SOLUTIONS | LOGIN</title>
+</head>
+<body>
+  <div class="principal">
+    <div class="login-banner">
+      <div class="login-container">
+      <h3 class="titulo">Junte-se a nós</h3>
+      <span class="p">Complete esses passos utilizar<br> nosso serviço</span>
+      <div class="cards">
+
+        <div class="box1">
+            <div class="bola">1</div>
+            <p>Crie sua conta</p>
+            <span> ⇣ </span>
+        </div>
+
+        <div class="box2">
+            <div class="bola">1</div>
+            <p>Login</p>
+            <span> ⇣ </span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  <div class="conteudo-container">
+    <img src="./Assets/LOGO DA EMPRESA.png DA EMPRESA.png" alt="">
+    <h1>Entre em sua conta</h1>
+    <p class="h1-conteudo">Insira suas credenciais para<br> entrar em sua conta</p>
+    <div>
+      <button class="botaoContato">Google</button>
+      <button class="botaoContato">Apple</button>
+    </div>
+    <div class="login-campos">
+      <p>Email</p>
+      <input type="text" placeholder="Ex: AnaMatos@gmail.com"  id="input_email"><br>
+      <p>Senha</p>
+      <input type="password" placeholder="Insira sua senha" id="input_senha">
+      <span>Deve ter mais de 8 caracteres</span>
+      <div id="div_mensagem" ></div>
+    </div>
+      <div class="botao">
+        <div id="resultado"></div>
+        <button onclick="entrar()">Entrar</button>
+        <p>Ainda não tem uma conta? <span>Criar</span></p>
+      </div>
+    </div>
+    
+  </div>
+    
+    
+  
+</body>
+</html>
+
+<script>
+
+    function entrar(){
+      var email = input_email.value
+      var senha = input_senha.value
+
+
+      if(email == 'claudio@sptech.school' && senha == 'Tech#123'){
+      
+      div_mensagem.innerHTML = `Bem-vindo Claudio!`
+    } else {
+        div_mensagem.innerHTML
+        resultado.style.color = "red"
+        resultado.innerHTML = `Credenciais inválidas`
+
+    }
+
+  }
+
+</script>
