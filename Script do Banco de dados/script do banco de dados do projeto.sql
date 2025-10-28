@@ -2,7 +2,6 @@
 CREATE DATABASE gnv_solutions_v2;
 USE gnv_solutions_v2;
 
-
 -- TABELA USUÁRIO
 CREATE TABLE usuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -28,14 +27,15 @@ dtHora DATETIME DEFAULT CURRENT_TIMESTAMP,
 idSensor INT,
 rua VARCHAR(50),
 bairro VARCHAR(50),
-cnpj CHAR(18)
+cnpj CHAR(18),
+numero_do_dispenser INT
 );
 
 
-INSERT INTO posto (pkUsuario_posto, idSensor, rua, bairro, cnpj) VALUES
-(1, 1, 'Rua das Flores, 120', 'Centro', '12.345.678/0001-99'),
-(2, 2, 'Av. Paulista, 900', 'Bela Vista', '98.765.432/0001-11'),
-(3, 3, 'Rua Verde, 77', 'Jardim Esperança', '45.678.912/0001-22');
+INSERT INTO posto (pkUsuario_posto, idSensor, rua, bairro, cnpj, numero_do_dispenser) VALUES
+(1, 1, 'Rua das Flores, 120', 'Centro', '11.111.111/0001-11', 4),
+(2, 2, 'Av. Paulista, 900', 'Bela Vista', '22.222.222/0001-22', 2),
+(3, 3, 'Rua Verde, 77', 'Jardim Esperança', '33.333.333/0001-33', 6);
 
 -- TABELA CHAMADO
 CREATE TABLE chamado (
@@ -65,9 +65,9 @@ CONSTRAINT chkStatus_sensor
 );
 
 INSERT INTO estoque (qtdArduinos, sensor_manutencao, status_sensor) VALUES
-(20, 0, 'Inativo'),
-(15, 1, 'Ativo'),
-(10, 0, 'Inativo');
+(20, 0, 'Ativo'),
+(15, 1, 'Inativo'),
+(10, 0, 'Ativo');
 
 
 -- TABELA MÉDIA
@@ -81,8 +81,8 @@ dtHora DATETIME DEFAULT CURRENT_TIMESTAMP
 INSERT INTO medida (fkSensor, porcentagem_gas) VALUES
 (1, 36.5),
 (1, 39.2),
-(2, 1.8),
-(2, 5.1),
+(2, NULL),
+(2, NULL),
 (3, 10.6),
 (3, 2.0);
 
@@ -116,6 +116,8 @@ INSERT INTO arduinoSensor (num_sensor, fkUsuario_sensor, fkEstoque_sensor, fkPos
 -- Verificar todas as tabelas e dados
 SHOW TABLES;
 
+
+
 /*
 truncate table usuario;
 truncate table chamado;
@@ -130,6 +132,7 @@ drop table estoque;
 drop table posto;
 drop table arduinoSensor;
 drop table medida;
+
 
 SELECT * FROM usuario;
 SELECT * FROM chamado;
@@ -150,7 +153,7 @@ SELECT
     p.rua AS "Rua do Posto",
     p.bairro AS "Bairro do Posto",
     p.cnpj AS "CNPJ",
-    p.dtHora AS "Data e Hora"
+    p.dtHora AS "Data e hora do cadastro"
 FROM usuario u
 JOIN posto p 
     ON u.idUsuario = p.pkUsuario_posto;
@@ -173,6 +176,7 @@ SELECT
     p.rua AS "Rua do Posto",
     p.bairro AS "Bairro do Posto",
     a.idSensor AS "Sensor",
+    p.numero_do_dispenser AS "Número do dispenser que está localizado",
     a.num_sensor AS "Número do sensor"
 FROM posto p
 JOIN arduinoSensor a 
@@ -206,6 +210,7 @@ SELECT
     u.email AS "Email do usuário",
     p.rua AS "Rua do posto",
     p.bairro AS "Bairro do Posto",
+    p.numero_do_dispenser AS "Número do dispenser que está localizado",
     a.num_sensor AS "Número do sensor",
     e.qtdArduinos AS "Quantidade no estoque",
     e.status_sensor AS "Status do sensor",
@@ -246,7 +251,8 @@ WHERE e.sensor_manutencao = 1;
     CASE
         WHEN m.porcentagem_gas < 5 THEN 'BOM'
         WHEN m.porcentagem_gas BETWEEN 5 AND 15 THEN 'PREOCUPANTE' -- BETWEEN (entre)
-        ELSE 'GRAVE'
+        WHEN m.porcentagem_gas > 15 THEN 'GRAVE'
+        ELSE 'DESATIVADO'
     END AS 'Status do Gás'
 FROM medida m
 JOIN arduinoSensor a 
