@@ -11,18 +11,18 @@
     <div class="login-banner">
       <div class="login-container">
       <h3 class="titulo">Junte-se a nós</h3>
-      <span class="p">Complete esses passos utilizar<br> nosso serviço</span>
+      <span class="p">Clique em um desses passos para <br> utilizar nosso serviço</span>
       <div class="cards">
 
         <div class="box1">
             <div class="bola">1</div>
-            <p>Crie sua conta</p>
+            <p><a href="/Cadastro/cadastro.html"></a>Crie sua conta</p>
             <span> ⇣ </span>
         </div>
 
         <div class="box2">
-            <div class="bola">1</div>
-            <p>Login</p>
+            <div class="bola">2</div>
+            <p><a href="/Login/login.html"></a>Login</p>
             <span> ⇣ </span>
         </div>
 
@@ -31,7 +31,7 @@
   </div>
   
   <div class="conteudo-container">
-    <img src="./Assets/LOGO DA EMPRESA.png DA EMPRESA.png" alt="">
+    <img src="./Assets/LOGO DA EMPRESA.png" alt="">
     <h1>Entre em sua conta</h1>
     <p class="h1-conteudo">Insira suas credenciais para<br> entrar em sua conta</p>
     <div>
@@ -63,20 +63,22 @@
 <script>
 
     function entrar(){
-      var email = input_email.value;
-      var senha = input_senha.value;
+      var email = input_email.value
+      var senha = input_senha.value
 
 
       if(email == 'claudio@sptech.school' && senha == 'Tech#123'){
+      resultado.style.color = "green"
+      resultado.innerHTML = `Bem-vindo Claudio!`
       
-      div_mensagem.innerHTML = `Bem-vindo Claudio!`;
-      } else {
+
+    } else {
         div_mensagem.innerHTML
-        resultado.style.color = "red";
-        resultado.innerHTML = `Credenciais inválidas`;
-        
-      }
-        
+        resultado.style.color = "red"
+        resultado.innerHTML = `Credenciais inválidas`
+
     }
+
+  }
 
 </script>

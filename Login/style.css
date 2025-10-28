@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body{
   height: 100%;
   margin: 0;
@@ -24,7 +26,7 @@ body{
   align-items: center;
   justify-content: end;
   height: 100%;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Poppins';
   font-size: 18px;
 
 
@@ -33,16 +35,16 @@ body{
 .login-container h3{
   color: white;
   margin: 0;
-   font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Poppins';
   font-size: 25px;
 
 }
 .login-container .p{
-  color: #bbbaba;
+  color: #6E6E6E;
   text-align: center;
   margin-top: 15px;
   margin-bottom: 30px;
-  font-family:Arial, Helvetica, sans-serif;
+ font-family: 'Poppins';
   font-size: 20px;
 
 }
@@ -51,7 +53,7 @@ body{
   display: flex;
   flex-direction: column;
   gap: 20px;
-   font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Poppins';
 }
 .box1{
   display: flex;
@@ -88,6 +90,9 @@ body{
   text-align: center;
   font-size: 10px;
 }
+.conteudo-container img{
+  width: 100px;
+}
 
 .conteudo-container{
   display: flex;
@@ -95,13 +100,14 @@ body{
   align-items: center;
   justify-content: center ;
   width: 900px;
-   font-family:Arial, Helvetica, sans-serif;
+  height: 100vh;
+  font-family: 'Poppins';
   font-size: 18px;
 
 }
 .h1-conteudo{
   text-align:center;
-   font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Poppins';
   font-size: 18px;
   
 
@@ -118,7 +124,7 @@ body{
   background-color: #fafafa;
   border: none;
   border-radius: 15px;
-  font-family:Arial, Helvetica, sans-serif;
+ font-family: 'Poppins';
   font-size: 15px;
 }
 .login-campos p{
@@ -127,7 +133,7 @@ body{
   font-size: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-family:Arial, Helvetica, sans-serif;
+ font-family: 'Poppins';
   font-size: 18px;
 }
 .login-campos span{
@@ -135,7 +141,7 @@ body{
   margin-top: 15px;
   margin-bottom: 15px;
   font-size: 15px;
-  font-family:Arial, Helvetica, sans-serif;
+ font-family: 'Poppins';
   font-size: 15px;
 
 }
@@ -146,7 +152,7 @@ body{
   border: none;
   border-radius: 10px;
   box-shadow: 5px 5px 10px  #D9D9D9;
-  font-family:Arial, Helvetica, sans-serif;
+ font-family: 'Poppins';
   font-size: 15px;
 }
 
@@ -157,26 +163,50 @@ body{
     flex-direction: column;
 
 }
-input::placeholder{
-  padding-left: 20px;
+
+input:focus{
+  outline-color: #2A9A90  ;
 }
+input::placeholder{
+  font-size: 15px;
+  font-family: 'Poppins';
+  font-weight: 500;
+  color: #aaa;
+  
+}
+input{
+  font-size: 15px;
+  font-family: 'Poppins';
+  font-weight: 500;
+  color: #0e0e0e;
+}
+
 .botao button{
   width: 480px;
   height: 45px;
   background-color: #2A9A90;
+  color: white;
   border: none;
   border-radius: 10px;
   margin-top: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
+ font-family: 'Poppins';  
+ font-size: 18px;
   cursor: pointer;
 
 }
+.botao button:hover{
+  background-color: #248b82;
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 .botao p{
   text-align: center;
   color: #949494;
   font-size: 15px;
-  font-family:Arial, Helvetica, sans-serif;
+ font-family: 'Poppins';
   font-size: 15px;
 
 }
@@ -184,7 +214,7 @@ input::placeholder{
   color: black;
   font-weight: bold;
   font-size: 15px;
-  font-family:Arial, Helvetica, sans-serif;
+ font-family: 'Poppins';
   font-size: 15px;
 
 }

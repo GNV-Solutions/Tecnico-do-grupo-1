@@ -12,8 +12,13 @@ body{
 
 .principal{
   display: flex;
+  flex-direction: row;
   width: 100%;
-  height: 100vh;
+  margin-top: 0%;
+    height: 100vh;
+    padding-top: 0%;
+    padding: auto;
+  
 
 }
 
@@ -22,12 +27,13 @@ body{
  margin-top: 10px;
  margin-bottom: 10px;
  padding-bottom: 60px;
-background-color: black;
+  background-color: black;
  background-image: url(./Assets/image\ 21.png);
  background-size: cover;
  width: 900PX;
- height: 860PX;
+ height: 90vh;
  border-radius: 20px;
+ 
 } 
 
 .conteudo{
@@ -41,7 +47,7 @@ background-color: black;
 }
 
 .conteudo .titulo{
-  color: white;
+  color: #ffffff;
   margin: 0;
   font-family: 'Poppins';
   font-size: 35px;
@@ -75,6 +81,7 @@ background-color: black;
   width: 250px;
   height: 40px;
   border-radius: 10px;
+  color: #000;;
 }
 
 .box1 {
@@ -83,10 +90,11 @@ background-color: black;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: #2A9A90;
   width: 250px;
   height: 40px;
   border-radius: 10px;
+  background-color: #248b82;
+  color: white;
 }
 .bola{
   background-color: black;
@@ -100,15 +108,24 @@ background-color: black;
   text-align: center;
   font-size: 10px;
 }
+.container2{
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-.container2 {
+.sub-container2 {
     display: flex;
     flex-direction: column; 
     align-items: center;
     justify-content: center; 
-    width: 50%;
-    height: 80vh;
-
+    width: 100%;
+    height: 80%;
+    padding-top: 0%;
+    padding: auto;
   
 }
 
@@ -126,6 +143,8 @@ background-color: black;
     width: 10%;
     align-items: end;
     flex-direction: column;
+    
+
 
 }
 
@@ -143,7 +162,8 @@ background-color: black;
 }
 .campos{
   display: flex;
-  width: 50%;
+  width: 60%;
+  height: 80%;
   flex-direction: column;
   font-family: 'Poppins';
   font-size: 15px;
@@ -159,12 +179,12 @@ background-color: black;
 
 }
 .campos input {
-  padding-left: 20px;
   width: 100%;
-  height: 50px;
+  height: 70px;
   background-color: #F4F4F4;
   border: none;
   border-radius: 15px;
+
 }
 input:focus{
   outline-color: #2A9A90  ;
@@ -174,6 +194,7 @@ input::placeholder{
   font-family: 'Poppins';
   font-weight: 500;
   color: #aaa;
+  
 }
 input{
   font-size: 15px;
@@ -184,7 +205,6 @@ input{
 
 button{
       padding: 15px 100px ;
-      background-color: #2A9A90;
       color: white;
       font-family: 'Poppins';
       font-weight: bold;
@@ -192,6 +212,7 @@ button{
       border: none;
       border-radius: 10px;
       margin-top: 20px;
+      background-color: #248b82;
 }
 .botao button:hover{
   background-color: #248b82;
