@@ -68,7 +68,6 @@
   function mascara() {
 
   var cnpj = document.getElementById('input_cnpj')
-  //var cnpjTamanho = cnpj.length
 
    if( cnpj.value.length == 2 ||  cnpj.value.length == 6){
    cnpj.value += "."
@@ -84,7 +83,7 @@
 
 }
 
-    
+
 
     function entrar() {
         var nome = input_nome.value;
@@ -96,28 +95,28 @@
         var senhaTamanho = senha.length
         var senhaMinuscula = senha.toLowerCase()
         var msg = ''
-        
 
-        
+
+
 
         // EMAIL
 
         if (email.includes('@gmail.com') || email.includes('@sptech.school')) {
             msg +=`<span style="color: green; font-weight: bold;"> Cadastro Realizado com sucesso! </span>`
-             
+
         }else{
 
             msg += `<span style="color: red; font-weight: bold;">*Formato de email inválido </span>`
         }
         // SENHA
-         
+
         var cont = 0
         var numeros = '1234567890'
-        var senhaTemNum = false 
-        
+        var senhaTemNum = false
+
         while (cont < senhaTamanho) {
              console.log(`CHEGOU AQUI NO WHILLE`)
-    
+
             if (senha.includes(numeros[cont])) {
                 senhaTemNum = true
                 break;
@@ -130,7 +129,7 @@
         }
         if (senhaTamanho >= 8 && senha != senhaMinuscula && senhaTemNum == true && (senha.includes('@') || senha.includes('&') || senha.includes('#') || senha.includes('$') || senha.includes('!'))  ) {
 
-            
+
             console.log(`CHEGOU AQUI`)
             msg +=`<span style="color: green; font-weight: bold;"> Cadastro Realizado com sucesso! </span>`
         }else{
@@ -141,7 +140,7 @@
 
         //CONFIMAÇAO DE SENHA
         if (senhaCon == senha) {
-           
+
         }else{
              msg += `<span style="color: red; font-weight: bold;"> *Confirmação de senha inválida.</span>`
         }

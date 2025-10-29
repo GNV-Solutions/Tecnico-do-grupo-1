@@ -1,112 +1,177 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulador de prejuízo financeiro</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-header">
+        <a href=""><img src="./Logo-removebg-preview 1.svg" alt="" /></a>
+      </div>
+      <div class="nav-header">
+        <ul>
+          <li><a href="../Landing Page/public/index.html">Home</a></li>
+          <li><a href="../Landing Page/public/index.html #section-sensor">Funções</a></li>
+          <li><a href="../Landing Page/public/index.html #sensor">Sensor</a></li>
+          <li>
+            <a href="./Calculadora financeira do grupo.html"
+              >Calculadora Financeira</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="login-header">
+        <button class="login-btn">Login</button>
+      </div>
+    </header>
 
-<body>
-  <header class="nav-bar-area">
-    <div class="logo-area">
-      <img src="Logo-removebg-preview 1.svg" alt="Logo do posto" class="logo-img">
-    </div>
+    <div class="main-container">
+      <div class="input-container-area">
+        <div class="title-area">
+          <h1>Faça simulações financeiras sobre o GNV</h1>
+        </div>
+        <div class="input-container">
+          <div class="input-area">
+            <h3>Qual o faturamento mensal do posto:</h3>
+            <input
+              type="number"
+              id="input_faturamento"
+              placeholder="Insira o faturamento"
+              class="ipt-calc"
+            />
 
-    <div class="links-area">
-      <a href="#">Início</a>
-      <a href="#">Simulador</a>
-      <a href="#">Contato</a>
-    </div>
+            <h3>Qual a margem de lucro do posto:</h3>
+            <input
+              type="number"
+              id="input_lucro"
+              placeholder="Insira em porcentagem"
+              class="ipt-calc"
+            />
 
-    <div class="login-btn">
-      <button class="btn-enter">Entrar</button>
-    </div>
-  </header>
+            <h3>Qual foi o investimento na construção do posto:</h3>
+            <input
+              type="number"
+              id="input_investimento"
+              placeholder="Insira o investimento"
+              class="ipt-calc"
+            />
 
-  <div class="main-container">
-    <div class="input-container-area">
-      <div class="title-area">
-        <h1>Simulador de prejuízo<br/>financeiro</h1>
+            <h3>Qual o tamanho do cilindro que explodiu:</h3>
+            <select id="input_cilindro" class="ipt-calc">
+              <option value="10">Pequeno (10kg)</option>
+              <option value="20">Médio (20kg)</option>
+              <option value="50">Grande (50kg)</option>
+            </select>
+
+            <br /><br />
+            <div class="btn-container">
+              <button onclick="Calcular()">Calcular prejuízo</button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="input-container">
-        <div class="input-area">
-          <h3>Qual o faturamento mensal do posto:</h3>
-          <input type="number" id="input_faturamento" class="ipt-calc" placeholder="Insira o faturamento" />
-
-          <h3>Qual a margem de lucro do posto em porcentagem:</h3>
-          <input type="number" id="input_lucro" class="ipt-calc" placeholder="Insira em porcentagem" />
-
-          <h3>Qual foi o investimento na construção do posto:</h3>
-          <input type="number" id="input_investimento" class="ipt-calc" placeholder="Insira o investimento" />
-
-          <h3>Qual o impacto do acidente no estabelecimento (percentual destruído):</h3>
-          <select id="input_cilindro" class="ipt-calc">
-            <option value="10">10%</option>
-            <option value="20">20%</option>
-            <option value="50">50%</option>
-          </select>
-        </div>
-
-        <div class="btn-container">
-          <button onclick="Calcular()" class="btn-calc">Calcular prejuízo</button>
+      <div class="response-area">
+        <div class="response-container" id="response_container">
+          <h1>Resultados</h1>
+          <div id="div_mensagem" class="response">
+            <h2>Os resultados aparecerão aqui! insira os dados nos campos ao lado.</h2>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="response-area">
-  
-      <div id="response_container" class="response-container">
-        <h1>Resultado</h1>
-        <div id="div_mensagem" class="response-text">
-       
-        </div>
-      </div>
-    </div>
-  </div>
+    <script>
 
-  <script>
-   
-    var diaFechado = 0;
+      var diaFechado = 0;
+      function Calcular() {
+        var faturamento = Number(input_faturamento.value);
+        var margemLucro = Number(input_lucro.value);
+        var investimento = Number(input_investimento.value);
+        var cilindro = Number(input_cilindro.value);
 
-    function Calcular() {
-      var faturamento = Number(input_faturamento.value) || 0;
-      var porcentagemLucro = Number(input_lucro.value) || 0;
-      var estrutura = Number(input_investimento.value) || 0;
-      var cilindro = input_cilindro.value;
-      var porcentagemDestruicao = 0;
-      var faturamentodiario = faturamento / 30;
-      var lucroDiario = (porcentagemLucro / 100) * faturamentodiario;
-      var prejuizoTotal = 0;
+        if (!faturamento || faturamento <= 0) {
+          div_mensagem.innerHTML =
+            '<p style="color:red;">Por favor, insira um faturamento mensal válido (>0).</p>';
+          response_container.style.display = 'block';
+          return;
+        }
 
-      if (cilindro == 10) { diaFechado = 3; porcentagemDestruicao = 0.1; }
-      if (cilindro == 20) { diaFechado = 7; porcentagemDestruicao = 0.2; }
-      if (cilindro == 50) { diaFechado = 21; porcentagemDestruicao = 0.5; }
+        if (!margemLucro && margemLucro !== 0) {
+          div_mensagem.innerHTML = '<p style="color:red;">Por favor, insira a margem de lucro.</p>';
+          response_container.style.display = 'block';
+          return;
+        }
 
-      var estruturaPerdida = estrutura * porcentagemDestruicao;
-      var faturamentoPerdido = faturamentodiario * diaFechado;
-      prejuizoTotal = estruturaPerdida + faturamentoPerdido;
+        if (margemLucro < 0 || margemLucro > 100) {
+          div_mensagem.innerHTML =
+            '<p style="color:red;">A margem de lucro deve estar entre 0 e 100%.</p>';
+          response_container.style.display = 'block';
+          return;
+        }
 
-      var diaRecuperacao = lucroDiario ? (prejuizoTotal / lucroDiario) : 0;
+        if (!investimento || investimento <= 0) {
+          div_mensagem.innerHTML =
+            '<p style="color:red;">Por favor, insira o investimento válido (>0).</p>';
+          response_container.style.display = 'block';
+          return;
+        }
 
-     
-      response_container.classList.add('show');
+        if (cilindro != 10 && cilindro != 20 && cilindro != 50) {
+          div_mensagem.innerHTML =
+            '<p style="color:red;">Selecione o tamanho do cilindro: 10, 20 ou 50 kg.</p>';
+          response_container.style.display = 'block';
+          return;
+        }
 
-      div_mensagem.innerHTML = ''
-        + '<p>O prejuízo estimado em caso de acidente envolvendo um cilindro de tamanho <b>' + cilindro + '</b>, '
-        + 'que tem um percentual de explosão da estrutura de <b>' + (porcentagemDestruicao * 100) + '%</b> envolve valores como:</p>'
+        var faturamentoDiario = faturamento / 30;
+        var lucroDiario = (margemLucro / 100) * faturamentoDiario;
 
-        + '<p>A destruição e reconstrução da estrutura do posto, além da compra de dispensers e equipamentos novos, que chega a R$' + estruturaPerdida.toFixed(0) + '.</p>'
+        var porcentagemDestruicao = 0;
+        var diasFechadoLocal = 0;
 
-        + '<p>A perda no faturamento devido à paralisação de ' + diaFechado + ' dias no posto, na qual chega a R$' + faturamentoPerdido.toFixed(0) + '.</p>'
+        if (cilindro == 10) {
+          porcentagemDestruicao = 0.05;
+          diasFechadoLocal = 3;
+        }
+        if (cilindro == 20) {
+          porcentagemDestruicao = 0.1;
+          diasFechadoLocal = 7;
+        }
+        if (cilindro == 50) {
+          porcentagemDestruicao = 0.25;
+          diasFechadoLocal = 21;
+        }
 
-        + '<p><b>Total de prejuízo estimado: R$ ' + prejuizoTotal.toFixed(0) + '.</b></p>'
+        var custoEstrutura = investimento * porcentagemDestruicao;
+        var faturamentoPerdido = faturamentoDiario * diasFechadoLocal;
+        var prejuizoTotal = custoEstrutura + faturamentoPerdido;
 
-        + '<p>O período estimado para recuperar o prejuízo de R$' + prejuizoTotal.toFixed(1) + ' será de aproximadamente '
-        + (isFinite(diaRecuperacao) ? diaRecuperacao.toFixed(1) + ' dias' : 'Não é possível calcular (margem de lucro = 0)') 
-        + ', dado o lucro diário de R$' + lucroDiario.toFixed(2) + '.</p>';
-    }
-  </script>
-</body>
+        var diasRecuperacao = 0;
+        if (lucroDiario > 0) {
+          diasRecuperacao = prejuizoTotal / lucroDiario;
+        } else {
+          diasRecuperacao = 'Não é possível calcular (lucro diário = 0)';
+        }
+        div_mensagem.innerHTML = `
+    <h2>Prejuízo estimado <br>
+    cilindro: ${cilindro}kg</h2>
+    <h2>A destruição da estrutura do posto e reposição de equipamentos: R$ ${custoEstrutura.toFixed(
+      2
+    )}</h2>
+    <h2>Perda de faturamento pelos ${diasFechadoLocal} dias de fechamento: R$ ${faturamentoPerdido.toFixed(
+          2
+        )}</h2>
+    <h2><b>Prejuízo total estimado: R$ ${prejuizoTotal.toFixed(0)}</b></h2>
+    <h2>Dias estimados para recuperar o prejuízo: ${diasRecuperacao.toFixed(0)}</h2>
+    <h2><em>Valores estimados com base em padrões de mercado de postos de gasolina. Resultados reais podem variar conforme situação e cobertura de seguro.</em></h2>
+    <h2> <b>NÚMEROS ESTIMADOS, PODENDO VARIAR DE CASO A CASO.<b></h2>
+  `;
+        response_container.style.display = 'block';
+      }
+    </script>
+  </body>
 </html>
