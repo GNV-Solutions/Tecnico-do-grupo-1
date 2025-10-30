@@ -68,15 +68,15 @@ console.log("valores inseridos no banco: ", sensorPorcentagem);
 
 await poolBancoDados.execute(
 'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (3, ?)',
-[sensorPorcentagem - 5]
+[sensorPorcentagem - 6]
 );
-console.log("valores inseridos no banco: ", sensorPorcentagem - 5);
+console.log("valores inseridos no banco: ", sensorPorcentagem - 6);
 
 await poolBancoDados.execute(
 'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (4, ?)',
-[sensorPorcentagem + 25]
+[sensorPorcentagem + 20]
 );
-console.log("valores inseridos no banco: ", sensorPorcentagem + 25);
+console.log("valores inseridos no banco: ", sensorPorcentagem + 20);
 
 }
 
@@ -128,4 +128,5 @@ servidor(
 valoresSensorAnalogico,
 
 );
+
 })();
