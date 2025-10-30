@@ -81,8 +81,8 @@ dtHora DATETIME DEFAULT CURRENT_TIMESTAMP
 INSERT INTO medida (fkSensor, porcentagem_gas) VALUES
 (1, 36.5),
 (1, 39.2),
-(2, 1.8),
-(2, 5.1),
+(2, NULL),
+(2, NULL),
 (3, 10.6),
 (3, 2.0);
 
