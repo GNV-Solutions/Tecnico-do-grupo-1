@@ -47,7 +47,7 @@
                     <p>Senha</p>
                     <input type="password" id="input_senha" placeholder="Insira sua senha"> <br>
                     <p>Confirmar senha</p>
-                    <input type="password" id="input_senha2" placeholder="Redigite sua senha"> <br>                   
+                    <input type="password" id="input_senha2" placeholder="Redigite sua senha"> <br>
                     <div id="res"><span class="rodape">Os campos devem ser preenchidos</span><br></div>
                 </div>
                 <div class="botao">
@@ -67,9 +67,7 @@
     // FUNÇÃO DE MASCARA CNPJ
 
     function mascara() {
-
         var cnpj = document.getElementById('input_cnpj')
-
         if (cnpj.value.length == 2 || cnpj.value.length == 6) {
             cnpj.value += "."
         }
@@ -80,8 +78,6 @@
             cnpj.value += "-"
         }
         console.log(cnpj)
-
-
     }
 
 
@@ -97,18 +93,12 @@
         var senhaMinuscula = senha.toLowerCase()
         var msg = ''
 
-
-
-
         // VALIDAÇÃO DE SENHA
-
         var cont = 0
         var numeros = '1234567890'
         var senhaTemNum = false
-
         while (cont < senhaTamanho) {
             console.log(`CHEGOU AQUI NO WHILLE`)
-
             if (senha.includes(numeros[cont])) {
                 senhaTemNum = true
                 break;
@@ -116,12 +106,9 @@
                 msg = `<span style="color: red; font-weight: bold;"> *Senha não atende todos requisitos </span>`
             }
             cont++
-
             console.log(msg)
         }
-
         // VALIDAÇÕES
-
         if (nome == '' || cnpj == '' || email == '' || senha == '' || senhaCon == '') {
             msg = `<span style="color: red; font-weight: bold;">*Ainda faltam campos para preencher!</span>`
         } else if (!email.includes('@gmail.com') && !email.includes('@sptech.school')) {
@@ -138,9 +125,6 @@
         }
         res.innerHTML = ' '
         res.innerHTML = msg
-
-
-
     }
 
 </script>

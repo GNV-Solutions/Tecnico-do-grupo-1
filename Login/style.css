@@ -40,7 +40,7 @@ body{
 
 }
 .login-container .p{
-  color: #6E6E6E;
+  color: #ffffff;
   text-align: center;
   margin-top: 15px;
   margin-bottom: 30px;
@@ -224,3 +224,4 @@ input{
   text-decoration: none;
   color: inherit;
 }
+
