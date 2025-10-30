@@ -84,13 +84,16 @@
 
     function entrar() {
         var nome = input_nome.value;
+        var nomeFormatado = nome.trim();
         var cnpj = input_cnpj.value;
+        var cnpjFormatado = cnpj.trim();
         var cnpjTamanho = cnpj.length
         var email = input_email.value;
+        var emailFormatado = email.trim();
         var senha = input_senha.value;
         var senhaCon = input_senha2.value;
-        var senhaTamanho = senha.length
-        var senhaMinuscula = senha.toLowerCase()
+        var senhaTamanho = senha.length;
+        var senhaMinuscula = senha.toLowerCase();
         var msg = ''
 
         // VALIDAÇÃO DE SENHA
@@ -109,18 +112,18 @@
             console.log(msg)
         }
         // VALIDAÇÕES
-        if (nome == '' || cnpj == '' || email == '' || senha == '' || senhaCon == '') {
+        if (nomeFormatado == '' || cnpjFormatado == '' || emailFormatado == '' || senha == '' || senhaCon == '') {
             msg = `<span style="color: red; font-weight: bold;">*Ainda faltam campos para preencher!</span>`
         } else if (!email.includes('@gmail.com') && !email.includes('@sptech.school')) {
             msg = `<span style="color: red; font-weight: bold;">*Formato de email inválido </span>`
 
-        } else if (senhaTamanho <= 8 || senha == senhaMinuscula || senhaTemNum == false || (!senha.includes('@') && !senha.includes('&') && !senha.includes('#') && !senha.includes('$') && !senha.includes('!'))) {
+        } else if (senhaTamanho < 8 || senha == senhaMinuscula || senhaTemNum == false || (!senha.includes('@') && !senha.includes('&') && !senha.includes('#') && !senha.includes('$') && !senha.includes('!'))) {
             msg = `<span style="color: red; font-weight: bold;"> *Senha deve ter pelo menos 1 caracter especial,<br>1 número e 1 letra maiuscula.</span>`
 
         } else if (senhaCon != senha) {
             msg = `<span style="color: red; font-weight: bold;"> *Confirmação de senha inválida.</span>`
         } else {
-            button.innerHTML
+            
             msg = `<span style="color: green; font-weight: bold;">Cadastro Realizado com sucesso!</span>`
         }
         res.innerHTML = ' '
