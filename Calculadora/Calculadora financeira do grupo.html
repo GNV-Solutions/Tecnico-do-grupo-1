@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>GNV | Calculadora</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -35,7 +35,7 @@
         </div>
         <div class="input-container">
           <div class="input-area">
-            <h3>Qual o faturamento mensal do posto:</h3>
+            <h3>Qual o faturamento mensal do posto(R$):</h3>
             <input
               type="number"
               id="input_faturamento"
@@ -43,7 +43,7 @@
               class="ipt-calc"
             />
 
-            <h3>Qual a margem de lucro do posto:</h3>
+            <h3>Qual a margem de lucro do posto(%):</h3>
             <input
               type="number"
               id="input_lucro"
@@ -51,20 +51,13 @@
               class="ipt-calc"
             />
 
-            <h3>Qual foi o investimento na construção do posto:</h3>
+            <h3>Qual foi o investimento na construção do posto(R$):</h3>
             <input
               type="number"
               id="input_investimento"
               placeholder="Insira o investimento"
               class="ipt-calc"
             />
-
-            <h3>Qual o tamanho do cilindro que explodiu:</h3>
-            <select id="input_cilindro" class="ipt-calc">
-              <option value="10">Pequeno (10kg)</option>
-              <option value="20">Médio (20kg)</option>
-              <option value="50">Grande (50kg)</option>
-            </select>
 
             <br /><br />
             <div class="btn-container">
@@ -84,94 +77,118 @@
       </div>
     </div>
 
-    <script>
+  <script>
+  function Calcular() {
+    // Entradas
+    var faturamento = Number(input_faturamento.value);
+    var margemLucro = Number(input_lucro.value);
+    var investimento = Number(input_investimento.value);
 
-      var diaFechado = 0;
-      function Calcular() {
-        var faturamento = Number(input_faturamento.value);
-        var margemLucro = Number(input_lucro.value);
-        var investimento = Number(input_investimento.value);
-        var cilindro = Number(input_cilindro.value);
+    // Validações
+    if (!faturamento || faturamento <= 0) {
+      div_mensagem.innerHTML =
+        '<p style="color:red;">Por favor, insira um faturamento mensal válido (>0).</p>';
+      response_container.style.display = 'block';
+      return;
+    }
+    if (!margemLucro && margemLucro !== 0) {
+      div_mensagem.innerHTML = '<p style="color:red;">Por favor, insira a margem de lucro.</p>';
+      response_container.style.display = 'block';
+      return;
+    }
+    if (margemLucro < 0 || margemLucro > 100) {
+      div_mensagem.innerHTML =
+        '<p style="color:red;">A margem de lucro deve estar entre 0 e 100%.</p>';
+      response_container.style.display = 'block';
+      return;
+    }
+    if (!investimento || investimento <= 0) {
+      div_mensagem.innerHTML =
+        '<p style="color:red;">Por favor, insira o investimento válido (>0).</p>';
+      response_container.style.display = 'block';
+      return;
+    }
 
-        if (!faturamento || faturamento <= 0) {
-          div_mensagem.innerHTML =
-            '<p style="color:red;">Por favor, insira um faturamento mensal válido (>0).</p>';
-          response_container.style.display = 'block';
-          return;
-        }
+    // Cálculos base
+    var faturamentoDiario = faturamento / 30;
+    var perda3dias = faturamentoDiario * 3;
+    var perda7dias = faturamentoDiario * 7;
 
-        if (!margemLucro && margemLucro !== 0) {
-          div_mensagem.innerHTML = '<p style="color:red;">Por favor, insira a margem de lucro.</p>';
-          response_container.style.display = 'block';
-          return;
-        }
+    // Áreas
+    var areaAfetada = 314.16;
+    var areaPequeno = 900;
+    var areaMedio = 2500;
+    var areaGrande = 5000;
 
-        if (margemLucro < 0 || margemLucro > 100) {
-          div_mensagem.innerHTML =
-            '<p style="color:red;">A margem de lucro deve estar entre 0 e 100%.</p>';
-          response_container.style.display = 'block';
-          return;
-        }
+    // Proporções
+    var propPequeno = areaAfetada / areaPequeno;
+    var propMedio = areaAfetada / areaMedio;
+    var propGrande = areaAfetada / areaGrande;
 
-        if (!investimento || investimento <= 0) {
-          div_mensagem.innerHTML =
-            '<p style="color:red;">Por favor, insira o investimento válido (>0).</p>';
-          response_container.style.display = 'block';
-          return;
-        }
+    // --- PEQUENO ---
+    var invPequeno = investimento * propPequeno;
+    var faturPequenoIni = perda3dias * propPequeno;
+    var faturPequenoFim = perda7dias * propPequeno;
+    var totalPequenoIni = invPequeno + faturPequenoIni;
+    var totalPequenoFim = invPequeno + faturPequenoFim;
 
-        if (cilindro != 10 && cilindro != 20 && cilindro != 50) {
-          div_mensagem.innerHTML =
-            '<p style="color:red;">Selecione o tamanho do cilindro: 10, 20 ou 50 kg.</p>';
-          response_container.style.display = 'block';
-          return;
-        }
+    // --- MÉDIO ---
+    var invMedio = investimento * propMedio;
+    var faturMedioIni = perda3dias * propMedio;
+    var faturMedioFim = perda7dias * propMedio;
+    var totalMedioIni = invMedio + faturMedioIni;
+    var totalMedioFim = invMedio + faturMedioFim;
 
-        var faturamentoDiario = faturamento / 30;
-        var lucroDiario = (margemLucro / 100) * faturamentoDiario;
+    // --- GRANDE ---
+    var invGrande = investimento * propGrande;
+    var faturGrandeIni = perda3dias * propGrande;
+    var faturGrandeFim = perda7dias * propGrande;
+    var totalGrandeIni = invGrande + faturGrandeIni;
+    var totalGrandeFim = invGrande + faturGrandeFim;
 
-        var porcentagemDestruicao = 0;
-        var diasFechadoLocal = 0;
+    // --- EXIBIÇÃO ---
+      div_mensagem.innerHTML = `
+      <h2><b>Prejuízo estimado</b><br>- Considerando área afetada de 314 m²</h2>
+      <br>
 
-        if (cilindro == 10) {
-          porcentagemDestruicao = 0.05;
-          diasFechadoLocal = 3;
-        }
-        if (cilindro == 20) {
-          porcentagemDestruicao = 0.1;
-          diasFechadoLocal = 7;
-        }
-        if (cilindro == 50) {
-          porcentagemDestruicao = 0.25;
-          diasFechadoLocal = 21;
-        }
+      <h2><b>Posto Pequeno (900 m²):</b></h2>
+      <p>💰 <b>Prejuízo estrutural (investimento):</b> 
+      ${invPequeno.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+      <p>📉 <b>Perda de faturamento (3 a 7 dias):</b> 
+      ${faturPequenoIni.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} 
+      a ${faturPequenoFim.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+      <p><b>Total estimado:</b> 
+      ${totalPequenoIni.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} 
+      a ${totalPequenoFim.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+      <br>
 
-        var custoEstrutura = investimento * porcentagemDestruicao;
-        var faturamentoPerdido = faturamentoDiario * diasFechadoLocal;
-        var prejuizoTotal = custoEstrutura + faturamentoPerdido;
+      <h2><b>Posto Médio (2.500 m²):</b></h2>
+      <p>💰 <b>Prejuízo estrutural (investimento):</b> 
+      ${invMedio.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+      <p>📉 <b>Perda de faturamento (3 a 7 dias):</b> 
+      ${faturMedioIni.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} 
+      a ${faturMedioFim.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+      <p><b>Total estimado:</b> 
+      ${totalMedioIni.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} 
+      a ${totalMedioFim.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
 
-        var diasRecuperacao = 0;
-        if (lucroDiario > 0) {
-          diasRecuperacao = prejuizoTotal / lucroDiario;
-        } else {
-          diasRecuperacao = 'Não é possível calcular (lucro diário = 0)';
-        }
-        div_mensagem.innerHTML = `
-    <h2>Prejuízo estimado <br>
-    cilindro: ${cilindro}kg</h2>
-    <h2>A destruição da estrutura do posto e reposição de equipamentos: R$ ${custoEstrutura.toFixed(
-      2
-    )}</h2>
-    <h2>Perda de faturamento pelos ${diasFechadoLocal} dias de fechamento: R$ ${faturamentoPerdido.toFixed(
-          2
-        )}</h2>
-    <h2><b>Prejuízo total estimado: R$ ${prejuizoTotal.toFixed(0)}</b></h2>
-    <h2>Dias estimados para recuperar o prejuízo: ${diasRecuperacao.toFixed(0)}</h2>
-    <h2><em>Valores estimados com base em padrões de mercado de postos de gasolina. Resultados reais podem variar conforme situação e cobertura de seguro.</em></h2>
-    <h2> <b>NÚMEROS ESTIMADOS, PODENDO VARIAR DE CASO A CASO.<b></h2>
-  `;
-        response_container.style.display = 'block';
-      }
-    </script>
-  </body>
-</html>
+      
+    `;
+
+    response_container.style.display = 'block';
+  }
+</script>
+
+<!--
+<h2>Posto Grande (5.000 m²):</h2>
+      <p>💰 <b>Prejuízo estrutural (investimento):</b> 
+      ${invGrande.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+      <p>📉 <b>Perda de faturamento (3 a 7 dias):</b> 
+      ${faturGrandeIni.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} 
+      a ${faturGrandeFim.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+      <p><b>Total estimado:</b> 
+      ${totalGrandeIni.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} 
+      a ${totalGrandeFim.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
+
+      <h2><em>Valores estimados proporcionalmente à área afetada (314 m²). Resultados reais podem variar conforme estrutura e seguro.</em></h2>
+-->
