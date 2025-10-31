@@ -58,11 +58,13 @@
               placeholder="Insira o investimento"
               class="ipt-calc"
             />
-
+<div id="div_mensagem2"></div>
             <br /><br />
             <div class="btn-container">
               <button onclick="Calcular()">Calcular prejuízo</button>
+              
             </div>
+            
           </div>
         </div>
       </div>
@@ -86,30 +88,30 @@
 
     // Validações
     if (!faturamento || faturamento <= 0) {
-      div_mensagem.innerHTML =
+      div_mensagem2.innerHTML =
         '<p style="color:red;">Por favor, insira um faturamento mensal válido (>0).</p>';
       response_container.style.display = 'block';
       return;
     }
     if (!margemLucro && margemLucro !== 0) {
-      div_mensagem.innerHTML = '<p style="color:red;">Por favor, insira a margem de lucro.</p>';
+      div_mensagem2.innerHTML = '<p style="color:red;">Por favor, insira a margem de lucro.</p>';
       response_container.style.display = 'block';
       return;
     }
     if (margemLucro < 0 || margemLucro > 100) {
-      div_mensagem.innerHTML =
+      div_mensagem2.innerHTML =
         '<p style="color:red;">A margem de lucro deve estar entre 0 e 100%.</p>';
       response_container.style.display = 'block';
       return;
     }
     if (!investimento || investimento <= 0) {
-      div_mensagem.innerHTML =
+      div_mensagem2.innerHTML =
         '<p style="color:red;">Por favor, insira o investimento válido (>0).</p>';
       response_container.style.display = 'block';
       return;
     }
 
-    // Cálculos base
+    // Cálculos 
     var faturamentoDiario = faturamento / 30;
     var perda3dias = faturamentoDiario * 3;
     var perda7dias = faturamentoDiario * 7;
@@ -125,21 +127,21 @@
     var propMedio = areaAfetada / areaMedio;
     var propGrande = areaAfetada / areaGrande;
 
-    // --- PEQUENO ---
+    // PEQUENO 
     var invPequeno = investimento * propPequeno;
     var faturPequenoIni = perda3dias * propPequeno;
     var faturPequenoFim = perda7dias * propPequeno;
     var totalPequenoIni = invPequeno + faturPequenoIni;
     var totalPequenoFim = invPequeno + faturPequenoFim;
 
-    // --- MÉDIO ---
+    // MÉDIO 
     var invMedio = investimento * propMedio;
     var faturMedioIni = perda3dias * propMedio;
     var faturMedioFim = perda7dias * propMedio;
     var totalMedioIni = invMedio + faturMedioIni;
     var totalMedioFim = invMedio + faturMedioFim;
 
-    // --- GRANDE ---
+    //  GRANDE 
     var invGrande = investimento * propGrande;
     var faturGrandeIni = perda3dias * propGrande;
     var faturGrandeFim = perda7dias * propGrande;
@@ -152,9 +154,9 @@
       <br>
 
       <h2><b>Posto Pequeno (900 m²):</b></h2>
-      <p>💰 <b>Prejuízo estrutural (investimento):</b> 
+      <p> <b>Prejuízo estrutural (investimento):</b> 
       ${invPequeno.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
-      <p>📉 <b>Perda de faturamento (3 a 7 dias):</b> 
+      <p> <b>Perda de faturamento (3 a 7 dias):</b> 
       ${faturPequenoIni.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} 
       a ${faturPequenoFim.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
       <p><b>Total estimado:</b> 
@@ -163,9 +165,9 @@
       <br>
 
       <h2><b>Posto Médio (2.500 m²):</b></h2>
-      <p>💰 <b>Prejuízo estrutural (investimento):</b> 
+      <p> <b>Prejuízo estrutural (investimento):</b> 
       ${invMedio.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
-      <p>📉 <b>Perda de faturamento (3 a 7 dias):</b> 
+      <p> <b>Perda de faturamento (3 a 7 dias):</b> 
       ${faturMedioIni.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})} 
       a ${faturMedioFim.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}</p>
       <p><b>Total estimado:</b> 
