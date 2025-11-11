@@ -83,7 +83,7 @@
                                     <input type="text" placeholder="EX: Ana">
                                 </div>
                                 <div class="buttons-form-funcionario">
-                                    <button class="btn-1">Visualizar</button>
+                                    <button class="btn-1" onclick="abrirModal()">Visualizar</button>
                                     <button class="btn-2">Cadastrar</button>
                                 </div>
                             </div>
@@ -106,6 +106,79 @@
                 </div>
         </div>
     </div>
+    <div id="modal" class="modal">
+        <div class="modal-conteudo">
+        <br><br><br>
+          <h3>Funcionários Cadastrados</h3>
+          <br><br><br>
+          <table id="tabela-funcionarios"></table>
+          <button class="btn-concluir-modal" onclick="concluir()">Concluir</button>
+        </div>
+      </div>
 </body>
+<script>
+    var nomes = ["Fontes", "BRENAO", "Fernanda"];
+    var emails = ["fontes@gmail.com", "BRENAO@gmail.com", "fernanda@gmail.com"];
+    var permissoes = ["Gerente", "Comum", "Comum"];
 
+    function abrirModal() {
+      var modal = document.getElementById("modal");
+      var tabela = document.getElementById("tabela-funcionarios");
+
+      var tabelaHtml = `
+        <thead>
+          <tr>
+            <th><b>Nome</b></th>
+            <th><b>Email</b></th>
+            <th><b>Permissão</b></th>
+            <th><b>Ação</b></th>
+          </tr>
+        </thead>
+        <tbody>
+      `;
+
+      for (var i = 0; i < nomes.length; i++) {
+        tabelaHtml += `
+          <tr>
+            <td>${nomes[i]}</td>
+            <td>${emails[i]}</td>
+            <td>${permissoes[i]}</td>
+            <td><button class="remove-btn-modal" onclick="remover(${i})">Remover</button></td>
+          </tr>
+        `;
+      }
+
+      tabelaHtml += "</tbody>";
+      tabela.innerHTML = tabelaHtml;
+
+      modal.style.display = "block";
+    }
+
+    function remover(indice) {
+      var novosNomes = [];
+      var novosEmails = [];
+      var novasPermissoes = [];
+
+      for (var i = 0; i < nomes.length; i++) {
+        if (i !== indice) {
+          novosNomes.push(nomes[i]);
+          novosEmails.push(emails[i]);
+          novasPermissoes.push(permissoes[i]);
+        }
+      }
+
+      nomes = novosNomes;
+      emails = novosEmails;
+      permissoes = novasPermissoes;
+
+      abrirModal();
+    }
+
+
+    function concluir() {
+      var modal = document.getElementById("modal");
+      modal.style.display = "none";
+      alert("Concluído!");
+    }
+</script>
 </html>
