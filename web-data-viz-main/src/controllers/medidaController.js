@@ -1,26 +1,32 @@
-const Medida = require("../models/Medida");
+// medidasController.js
+var Medida = require("../models/Medida");
+
+function ultimas(req, res) {
+    var idSensor = req.params.idSensor;
+
+    Medida.getUltimasMedidas(idSensor, 1)
+        .then(function (medidas) {
+            res.json(medidas);
+        })
+        .catch(function (erro) {
+            res.status(500).json({ error: erro });
+        });
+}
+
+function inserir(req, res) {
+    var idSensor = req.params.idSensor;
+    var gas = req.body.gas;
+
+    Medida.inserirMedida(idSensor, gas)
+        .then(function (resultado) {
+            res.json({ success: true });
+        })
+        .catch(function (erro) {
+            res.status(500).json({ error: erro });
+        });
+}
 
 module.exports = {
-  async ultimas(req, res) {
-    try {
-      const { idSensor } = req.params;
-      const medidas = await Medida.getUltimasMedidas(idSensor, 10);
-      res.json(medidas);
-    } catch (err) {
-      res.status(500).json({ error: err });
-    }
-  },
-
-  async inserir(req, res) {
-    try {
-      const { idSensor } = req.params;
-      const { gas } = req.body;
-
-      await Medida.inserirMedida(idSensor, gas);
-
-      res.json({ success: true });
-    } catch (err) {
-      res.status(500).json({ error: err });
-    }
-  }
+    ultimas,
+    inserir
 };
