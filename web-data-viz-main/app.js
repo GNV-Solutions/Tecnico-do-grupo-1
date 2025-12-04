@@ -25,11 +25,18 @@ app.use(express.static(path.join(__dirname, "public")));
 var sensorRouter = require("./src/routes/sensorRoutes");
 var medidaSensorRouter = require("./src/routes/medidaRoutes");
 var dashboardRouter = require("./src/routes/dashboardRoutes");
+var postoRouter = require("./src/routes/postoRoute");
+var funcionarioRouter = require("./src/routes/funcionarioRoute");
+var iaRouter = require("./src/routes/bobIARoute");
 
+app.use("/ia", iaRouter);
 // PREFIXOS CORRETOS
 app.use("/sensores", sensorRouter);     // GET /sensores
 app.use("/medidas", medidaSensorRouter); // GET /medidas/ultimas/101
 app.use("/dashboard", dashboardRouter);  // GET /dashboard
+app.use("/posto", postoRouter);
+app.use("/funcionario", funcionarioRouter);
+app.use("/ia", iaRouter);
 
 // ROTA PRINCIPAL → SERVE O INDEX
 app.get("/", (req, res) => {
@@ -39,7 +46,7 @@ app.get("/", (req, res) => {
 // INICIAR SERVIDOR
 app.listen(PORTA_APP, function () {
   console.log(`
-    Servidor rodando!  
+    Servidor rodando!
     Acesse: http://${HOST_APP}:${PORTA_APP}
   `);
 });

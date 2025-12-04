@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Vazamento de Gás</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../../css/Dashboard/style.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="logo-area">
+      <img src="../../Assets/LOGO DA EMPRESA.png" alt="Logo" class="logo-img">
+      <span class="brand">GNV Solutions</span>
+    </div>
+
+    <div class="header-actions">
+      <button class="helpdesk-btn"> Help Desk</button>
+    </div>
+  </header>
+
+
+  <main class="container">
+    <section class="kpi-section">
+      <div class="kpi-card yellow">
+        <h3>Help Desk</h3>
+        <p class="title">Status:</p>
+        <span class="help-status">Ativo e disponível</span>
+      </div>
+
+
+      <div id="colorKPI" class="kpi-card">
+        <h3>Status Atual :</h3>
+        <div class="status-pill">PERIGO</div>
+        <p><strong>Local:</strong> Dispenser 3</p>
+        <span class="alert-msg">Tome uma medida imediatamente.</span>
+      </div>
+
+      <div class="kpi-card gray">
+        <h3>Nível de Vazamento (em %)</h3>
+        <div class="bar-container">
+          <div class="bar"></div>
+        </div>
+        <p class="percent">22%</p>
+        <div class="legend-row">
+          <div><span class="dot red-dot"></span>Porcentagem Crítica</div>
+          <div><span class="dot green-dot"></span>Porcentagem segura</div>
+        </div>
+      </div>
+
+      <div class="kpi-card white">
+        <h3>Alertas nas últimas 24h</h3>
+        <p class="alert-number">4 Alertas</p>
+        <span class="alert-change">▲ 22.0%</span>
+      </div>
+    </section>
+
+    <section class="chart-section">
+      <div class="chart-header">
+        <button class="time-btn">Agora</button>
+        <h2>Detecção de gás (em %)</h2>
+        <p>Gráfico com porcentagem detectada em tempo real, caso queira, selecione um período.</p>
+      </div>
+      <div class="chart-container">
+        <canvas id="gasChart"></canvas>
+      </div>
+    </section>
+
+    <section class="bottom-section">
+      <div class="incident-card">
+        <h3>Tipos de incidentes</h3>
+        <p>A segurança de seu posto é representada pelas seguintes cores:</p>
+        <ul>
+          <li><span class="dot red-dot"></span> Vazamento Crítico <strong>15%</strong></li>
+          <li><span class="dot orange-dot"></span> Vazamento alerta<strong>6% - 14%</strong></li>
+          <li><span class="dot green-dot"></span> Vazamento seguro <strong>5%</strong></li>
+        </ul>
+      </div>
+
+      <div class="sensor-card">
+        <div class="header">
+          <h3>Sensores</h3>
+          <button class="filter-btn">Filtrar</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome do sensor</th>
+              <th>Dispenser</th>
+              <th>% Gás</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sensor 1</td>
+              <td>Dispenser 1</td>
+              <td class="green-text">5%</td>
+              <td><span class="status safe">Seguro</span></td>
+            </tr>
+            <tr>
+              <td>Sensor 2</td>
+              <td>Dispenser 2</td>
+              <td class="orange-text">11%</td>
+              <td><span class="status warn">Atenção</span></td>
+            </tr>
+            <tr>
+              <td>Sensor 3</td>
+              <td>Dispenser 3</td>
+              <td class="red-text">22%</td>
+              <td><span class="status danger">Perigo</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
+<script>
+  const API_URL = "http://localhost:3333";
+  const MAX_POINTS = 20; // número máximo de pontos no gráfico
+
+  // === CONFIGURAÇÃO DO GRÁFICO ===
+  var ctx = document.getElementById("gasChart").getContext("2d");
+
+  let gasChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: [],
+      datasets: []
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 0,
+          max: 40,
+          ticks: { callback: v => v + "%" }
+        }
+      }
+    }
+  });
+
+  // função para retornar cor por status
+  function getColorByStatus(status) {
+    if (status === "Perigo") return "#FF0000";
+    if (status === "Atenção") return "#ff8800";
+    return "#2A9A90";
+  }
+
+  // Função para atualizar o gráfico em tempo real
+  async function atualizarGrafico() {
+    const res = await fetch(`${API_URL}/dashboard`);
+    const sensores = await res.json();
+
+    const agora = new Date();
+    const hora = `${String(agora.getHours()).padStart(2,'0')}:${String(agora.getMinutes()).padStart(2,'0')}:${String(agora.getSeconds()).padStart(2,'0')}`;
+
+    // Se não houver datasets ainda, cria
+    if (gasChart.data.datasets.length === 0) {
+      sensores.forEach(s => {
+        gasChart.data.datasets.push({
+          label: `Sensor ${s.sensor}`,
+          data: [s.porcentagem],
+          borderColor: getColorByStatus(s.status),
+          borderWidth: 3,
+          tension: 0.4,
+          pointBackgroundColor: getColorByStatus(s.status)
+        });
+      });
+      gasChart.data.labels.push(hora);
+    } else {
+     // Atualiza os datasets existentes
+sensores.forEach((s, i) => {
+  const cor = getColorByStatus(s.status);
+
+  gasChart.data.datasets[i].data.push(s.porcentagem);
+
+  // Atualizar cor em tempo real
+  gasChart.data.datasets[i].borderColor = cor;
+  gasChart.data.datasets[i].pointBackgroundColor = cor;
+
+  // Remove o dado mais antigo se ultrapassar o limite
+  if (gasChart.data.datasets[i].data.length > MAX_POINTS) {
+    gasChart.data.datasets[i].data.shift();
+  }
+});
+      gasChart.data.labels.push(hora);
+
+      // Remove o rótulo mais antigo se ultrapassar o limite
+      if (gasChart.data.labels.length > MAX_POINTS) {
+        gasChart.data.labels.shift();
+      }
+    }
+
+    gasChart.update();
+  }
+  // Atualizar KPIs
+  async function atualizarKpis() {
+    const res = await fetch(`${API_URL}/dashboard`);
+    const sensores = await res.json();
+    const sensor1 = sensores.find(s => s.sensor == 1);
+
+    const colorKPI = document.getElementById("colorKPI");
+    const statusKpi = document.querySelector(".status-pill");
+    const gasPercent = document.querySelector(".percent");
+    const bar = document.querySelector(".bar");
+    const helpStatus = document.querySelector(".help-status");
+
+    let g = sensor1.porcentagem;
+
+    gasPercent.innerHTML = `${g}%`;
+    bar.style.width = g + "%";
+
+    if (g >= 15) {
+      colorKPI.style.background = "#f2dede";
+      statusKpi.innerHTML = "PERIGO";
+      statusKpi.style.background = "#d9534f";
+      helpStatus.innerHTML = "Ativo – Alerta enviado";
+    } else if (g >= 11) {
+      colorKPI.style.background = "#fcf8e3";
+      statusKpi.innerHTML = "ATENÇÃO";
+      statusKpi.style.background = "#ff8800";
+      helpStatus.innerHTML = "Atenção – Vazamento moderado";
+    } else {
+      colorKPI.style.background = "#dff0d8";
+      statusKpi.innerHTML = "SEGURO";
+      statusKpi.style.background = "#2A9A90";
+      helpStatus.innerHTML = "Tudo normal";
+    }
+  }
+
+  // Atualizar tabela
+  async function atualizarTabelaSensores() {
+    const res = await fetch(`${API_URL}/dashboard`);
+    const sensores = await res.json();
+
+    const tbody = document.querySelector(".sensor-card table tbody");
+    tbody.innerHTML = "";
+
+    sensores.forEach(s => {
+      let corValor = "green-text";
+      if (s.porcentagem >= 15) corValor = "red-text";
+      else if (s.porcentagem >= 11) corValor = "orange-text";
+
+      let classeStatus = "safe";
+      if (s.status === "Perigo") classeStatus = "danger";
+      else if (s.status === "Atenção") classeStatus = "warn";
+
+      tbody.innerHTML += `
+        <tr>
+          <td>Sensor ${s.sensor}</td>
+          <td>Dispenser ${s.posto}</td>
+          <td class="${corValor}">${s.porcentagem}%</td>
+          <td><span class="status ${classeStatus}">${s.status}</span></td>
+        </tr>
+      `;
+    });
+  }
+
+  // Intervalo de atualização a cada 3 segundos
+  setInterval(() => {
+    atualizarGrafico();
+    atualizarKpis();
+    atualizarTabelaSensores();
+    getColorByStatus();
+  }, 3000);
+
+  // Primeira atualização
+  atualizarGrafico();
+  atualizarKpis();
+  atualizarTabelaSensores();
+</script>

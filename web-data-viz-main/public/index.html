@@ -1,25 +1,120 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard - Vazamento de Gás</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GNV - Solutions</title>
+    <link rel="stylesheet" href="./css/Landing/style.css" />
+    <link rel="stylesheet" href="./css/Landing/header.css" />
+    <link rel="stylesheet" href="./css/Landing/home.css" />
+    <link rel="stylesheet" href="./css/Landing/how-it-works.css" />
+    <link rel="stylesheet" href="./css/Landing/about-us.css" />
+    <link rel="stylesheet" href="./css/Landing/footer.css">
+    <link rel="stylesheet" href="./css/Landing/sensor.css">
+    <link rel="stylesheet" href="./css/Landing/values.css">
+    <link rel="stylesheet" href="./css/Landing/especifications.css">
+    <link rel="stylesheet" href="./css/Landing/calculator-card.css">
+    <link rel="stylesheet" href="./css/Landing/contact.css">
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="logo-area">
-      <img src="./dashboardv2/IMGS/LOGO DA EMPRESA.png" alt="Logo" class="logo-img">
-      <span class="brand">GNV Solutions</span>
-    </div>
+    <header>
+        <div class="logo-header">
+            <a href=""><img src="./Assets/LOGO DA EMPRESA.png" alt="" /></a>
+        </div>
+        <div class="nav-header">
+            <ul>
+                <li><a href="#logo-header">Home</a></li>
+                <li><a href="#section-sensor">Funções</a></li>
+                <li><a href="#sensor">Sensor</a></li>
+                <li><a href="./Pages/Calculadora/Calculadora financeira do grupo.html">Calculadora Financeira</a></li>
+            </ul>
+        </div>
+        <div class="login-header">
+            <a href="/Login/login.html"><button class="login-btn">Login</button></a>
+        </div>
+    </header>
 
-    <div class="header-actions">
-      <button class="helpdesk-btn"> Help Desk</button>
-      <div class="notif">🔔</div>
+    <div class="home-container">
+        <div class="content-section-home-container">
+            <div class="title-section-home-container">
+                <label style="color: #2a9a90">Segurança</label>
+                <label for=""> que protege vidas</label>
+                <label style="color: #2a9a90">Inovação</label>
+                <label for=""> que transforma o</label>
+                <label style="color: #2a9a90">Futuro</label>
+            </div>
+            <div class="desc-section-home-container">
+                <p>
+                    Transforme seu posto em um ambiente mais seguro e sustentável.
+                    <br />
+                    Adote agora a tecnologia da GNV Solutions e garanta proteção em
+                    tempo real para clientes, equipe e toda a sua estrutura.
+                </p>
+            </div>
+            <div class="button-section-home-container">
+                <a href="#form"><button class="btn-orc">Solicitar orçamento</button></a>
+                <a href="#sobre-nos"> <button class="btn-info">Saiba mais</button></a>
+            </div>
+        </div>
     </div>
+    <div class="container-work">
+        <div class="section-title">
+            <h1>Como funciona</h1>
+        </div>
+
+        <div id="como-funciona" class="section-blocks-work">
+            <div class="section-cards-blocks-work">
+                <div class="section-cards">
+                    <img src="../assets/User.svg" alt="" />
+                    <h3>Entre em contato</h3>
+                    <p>
+                        Fale com nossa equipe e tire todas as dúvidas sobre o sistema de detecção de vazamento de GNV.
+                    </p>
+                </div>
+                <img src="../assets/Arrow 1.svg" alt="" class="arrow-icon">
+                <div class="section-cards">
+                    <img src="../assets/Petition.svg" alt="" />
+                    <h3>Faça o cadastro</h3>
+                    <p>
+                        Informe seus dados e do seu posto para iniciar a implementação do sensor.
+                    </p>
+                </div>
+                <img src="../assets/Arrow 1.svg" alt="" class="arrow-icon">
+                <div class="section-cards">
+                    <img src="../assets/Laptop Analytic.svg" alt="" />
+                    <h3>Veja funcionalidades</h3>
+                    <p>
+                        Conheça todas as funções do sistema: alertas, relatórios e integração com automação.
+                    </p>
+                </div>
+                <img src="../assets/Arrow 1.svg" alt="" class="arrow-icon">
+                <div class="section-cards">
+                    <img src="../assets/Plumber.svg" alt="" />
+                    <h3>Visita técnica</h3>
+                    <p id="sobre-nos">
+                        Agende uma visita para instalação e configuração, garantindo operação segura e eficiente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<<<<<<< HEAD
+    <div class="section-about-us">
+        <div class="sub-section-about-us">
+            <h3>Sobre nós</h3>
+            <p>
+                A GNV Solutions desenvolve soluções tecnológicas para monitorar o abastecimento de veículos a GNV em
+                postos
+                de combustível, detectando vazamentos em tempo real e garantindo mais segurança para clientes,
+                funcionários
+                e toda a estrutura do posto.
+                O projeto foi idealizado por estudantes de Análise e Desenvolvimento de Sistemas da SpTech School e
+                transformado em negócio em 2025,
+                com a fundação da empresa no segundo semestre do mesmo ano.
+            </p>
+=======
   </header>
 
 
@@ -44,12 +139,94 @@
         <h3>Nível de Vazamento (em %)</h3>
         <div class="bar-container">
           <div class="bar"></div>
+>>>>>>> 71882cac1f8792fbb6870bf4c08cf05f5c0a0316
         </div>
-        <p class="percent">22%</p>
-        <div class="legend-row">
-          <div><span class="dot red-dot"></span>Porcentagem Crítica</div>
-          <div><span class="dot green-dot"></span>Porcentagem segura</div>
+    </div>
+    <div class="container-mvv">
+        <div class="sub-container-mvv">
+            <div class="min-block values">
+                <img src="../assets/vision-art.svg" alt="">
+                <div>
+                    <div>
+                        <h3>
+                            Visão
+                        </h3>
+                        <p>
+                            Visamos ser a maior e mais confiável empresa de controle de vazamento de gás (GNV).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="main-block">
+                <img src="../assets/mission-art.svg" alt="">
+                <div>
+                    <div>
+                        <h3>
+                            Missão
+                        </h3>
+                        <p>
+                            Garantir segurança no abastecimento de GNV com tecnologia de detecção rápida e precisa de
+                            vazamentos, prevenindo explosões e protegendo vidas, equipamentos e postos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="min-block vision">
+                <img src="../assets/values-art.svg" alt="">
+                <div>
+                    <div>
+                        <h3>
+                            Valores
+                        </h3>
+                        <p>
+                            Nossos valores são comprometimento, responsabilidade, segurança e respeito à vida.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+<<<<<<< HEAD
+    </div>
+    <div id="section-sensor" class="container-sensor">
+        <h1>Proteja seu posto com o nosso Sistema de detecção <br> de GNV </h1>
+        <div class="sub-container-sensor">
+            <div class="card-sensor leak">
+                <div class="btn-sensor-container">
+                    <div>
+                        <button class="btn-arrow"><a href="#form"><img src="../assets/arrow2.svg" alt=""></a></button>
+                    </div>
+                </div>
+                <div class="section-sensor">
+                    <h3>Detecção de <br> Vazamento</h3>
+                    <p>Recebe e regista os dados do <br>
+                        vazamento em porcentagem a <br>
+                        cada 1 segundo.</p>
+                    </div>
+                </div>
+                <div class="card-sensor supply">
+                    <div class="btn-sensor-container">
+                        <div>
+                            <button class="btn-arrow"><a href="#form"><img src="../assets/arrow2.svg" alt=""></a></button>
+                        </div>
+                    </div>
+                    <div class="section-sensor">
+                        <h3>Detector de <br> gases versátil</h3>
+                        <p>Identifica além do GNV, como <br> gases inflamáveis e outros <br> vazamentos.</p>
+                    </div>
+                </div>
+                <div class="card-sensor alarm">
+                    <div class="btn-sensor-container">
+                        <div>
+                            <button class="btn-arrow"><a href="#form"><img src="../assets/arrow2.svg" alt=""></a></button>
+                        </div>
+                    </div>
+                    <div class="section-sensor">
+                        <h3>Alarmes integrados a Dashboard</h3>
+                        <p>Alarmes na tela de Dashboard do sistema, para a segurança do cliente</p>
+                    </div>
+                </div>
+            </div>
+=======
       </div>
 
       <div class="kpi-card white">
@@ -101,43 +278,131 @@
         <div class="header">
           <h3>Sensores</h3>
           <button class="filter-btn">Filtrar</button>
+>>>>>>> 71882cac1f8792fbb6870bf4c08cf05f5c0a0316
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Nome do sensor</th>
-              <th>Dispenser</th>
-              <th>% Gás</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Sensor 1</td>
-              <td>Dispenser 1</td>
-              <td class="green-text">5%</td>
-              <td><span class="status safe">Seguro</span></td>
-            </tr>
-            <tr>
-              <td>Sensor 2</td>
-              <td>Dispenser 2</td>
-              <td class="orange-text">11%</td>
-              <td><span class="status warn">Atenção</span></td>
-            </tr>
-            <tr>
-              <td>Sensor 3</td>
-              <td>Dispenser 3</td>
-              <td class="red-text">22%</td>
-              <td><span class="status danger">Perigo</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-</body>
+
+
+
+        <div id="sensor" class="container-especifications">
+            <div class="sub-container-especifications">
+                <div class="text-area-especifications">
+                    <div>
+                        <h3>Especificações</h3>
+                        <p>
+                            Detecção em tempo real de vazamentos de GNV, GLP e gases inflamáveis. <br> <br>
+
+                            Alerta imediato via LED e buzzer ao detectar níveis críticos. <br>
+                            Controle confiável com Arduino, leitura contínua e resposta rápida (1s). <br> <br>
+
+                            Integrado ao sistema de monitoramento com insights precisos sobre cada leitura. <br> <br>
+
+                            Compacto e resistente, com alimentação 5V DC e operação estável em postos. <br> <br>
+
+                            Calibração simples e automática, garantindo precisão constante. <br>
+                        </p>
+                    </div>
+                </div>
+                <div class="image-area-especifications">
+                    <img src="../assets/sensor-stock.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="container-calculator-card">
+            <div class="sub-container-calculator">
+                <div>
+                    <h3>Conheça nosso simulador financeiro!</h3>
+                    <p>Simule o seus custos antes, e depois do nosso sistema. Com indicadores <br> sólidos sobre o seu negócio!</p>
+                    <a href="../../Calculadora/Calculadora financeira do grupo.html"><button>Calcular</button></a>
+                </div>
+                <img src="../assets/calculator-art.svg" alt="">
+            </div>
+        </div>
+
+
+        <div  id="form"  class="container-contact">
+            <div class="sub-container-contact">
+                <div class="text-area-contact">
+                    <div>
+                        <h3>Colabore!</h3>
+                        <p>Contate-nos por email, solicite seu orçamento, e tenha um <br> atendimento personalizado de excelência.</p>
+                        <img src="../assets/cart-art.svg" alt="">
+                    </div>
+                </div>
+                <div class="container-form-contact">
+                    <div >
+                        <input type="text" placeholder="Seu melhor email: " id="ipt_email" oninput="validateEmail()">
+                        <input type="text" placeholder="Assunto: " id="ipt_assunto" oninput="validateSubject()">
+                        <textarea placeholder="Você tem dúvidas, nós temos as respostas, conte-nos!" id="ipt_corpo" oninput="validateBody()"></textarea>
+                        <p id="responseValidator" class="responseValidator"></p>
+                        <button onclick="submitContact()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-container">
+              <div class="footer-section equipe">
+                <h3>Conheça nossa equipe!</h3>
+                <div class="membros">
+                  <div class="membro">
+                    <img src="../assets/BRENO.png" alt="Luana Tejon">
+                    <p>Breno<br>Abilio</p>
+                  </div>
+                  <div class="membro">
+                    <img src="../assets/LUANA.png" alt="Luana Tejon">
+                    <p>Luana<br>Tejon</p>
+                  </div>
+                  <div class="membro">
+                    <img src="../assets/VITOR.png" alt="Luana Tejon">
+                    <p>Vitor<br>Lima</p>
+                  </div>
+                  <div class="membro">
+                    <img src="../assets/FERNANDA.png" alt="Luana Tejon">
+                    <p>Fernanda<br>Abreu</p>
+                  </div>
+                  <div class="membro">
+                    <img src="../assets/FONTES.png" alt="Luana Tejon">
+                    <p>Gabriel<br>Fontes</p>
+                  </div>
+                  <div class="membro">
+                    <img src="../assets/NICOLAS.png" alt="Luana Tejon">
+                    <p>Nicolas<br>Mazza</p>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-section sitemap">
+                <h3>Sitemap</h3>
+                <ul>
+                  <li><a href="#logo-header">Home</a></li>
+                  <li><a href="#como-funciona">Como funciona</a></li>
+                  <li><a href="#form">Contato</a></li>
+                  <li><a href="#sensor">Sensor</a></li>
+                </ul>
+              </div>
+              <div class="footer-section contato">
+                <h3>Contato</h3>
+                <p>(11) 99876-5432</p>
+                <p>gnv.solutions@gmail.com</p>
+                <div class="social-icons">
+                  <a href=""><img src="../assets/whatsapp.png" alt="WhatsApp"></a>
+                  <a href=""><img src="../assets/instagram.png" alt="Instagram"></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="copyright">
+              <p>Copyright© 2025 GNV SOLUTIONS LTDA</p>
+            </div>
+          </footer>
+            </div>
+        </footer>
+    </body>
+    <script src="../src/js/validators/contact-validators.js"></script>
 
 </html>
+<<<<<<< HEAD
+=======
 <script>
   var API_URL = "http://localhost:3333";
   var MAX_POINTS = 20; // número máximo de pontos no gráfico
@@ -346,3 +611,4 @@
   atualizarKpis();
   atualizarTabelaSensores();
 </script>
+>>>>>>> 71882cac1f8792fbb6870bf4c08cf05f5c0a0316
