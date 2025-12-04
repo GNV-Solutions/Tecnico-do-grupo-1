@@ -12,7 +12,9 @@ function dadosDashboard(req, res) {
                 
                 // Busca a última medida do sensor:
                 var promessa = Medida.getUltimasMedidas(sensor.idSensor, 1)
-                    .then(function (medidas) {
+                    .then(async function (medidas) {
+                        const qtdeAlertas = await Medida.getQuantidadeAlertas(sensor.idSensor);
+
                         var porcentagem = 0;
                         
                         if (medidas.length > 0 && medidas[0].porcentagem_gas != undefined) {
@@ -32,7 +34,8 @@ function dadosDashboard(req, res) {
                             sensor: sensor.num_sensor,
                             posto: sensor.fkPosto_sensor,
                             porcentagem: porcentagem,
-                            status: status
+                            status: status,
+                            qtdeAlertas: qtdeAlertas[0]['COUNT(*)'],
                         };
                     });
                 

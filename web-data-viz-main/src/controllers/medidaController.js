@@ -1,4 +1,4 @@
-// medidasController.js
+// medidaController.js
 var Medida = require("../models/Medida");
 
 function ultimas(req, res) {

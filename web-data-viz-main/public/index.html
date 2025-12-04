@@ -24,7 +24,7 @@
 
 
   <main class="container">
-  
+
     <section class="kpi-section">
       <div class="kpi-card yellow">
         <h3>Help Desk</h3>
@@ -34,7 +34,7 @@
 
 
       <div id="colorKPI" class="kpi-card">
-        <h3>Status Atual :</h3>
+        <h3>Status Atual:</h3>
         <div class="status-pill">PERIGO</div>
         <p><strong>Local:</strong> Dispenser 3</p>
         <span class="alert-msg">Tome uma medida imediatamente.</span>
@@ -54,8 +54,8 @@
 
       <div class="kpi-card white">
         <h3>Alertas nas últimas 24h</h3>
-        <p class="alert-number">4 Alertas</p>
-        <span class="alert-change">▲ 22.0%</span>
+        <p class="alert-number">0 Alertas</p>
+        <!-- <span class="alert-change">▲ 22.0%</span> -->
       </div>
     </section>
 
@@ -65,7 +65,7 @@
 
 
 
-    
+
     <section class="chart-section">
       <div class="chart-header">
         <button class="time-btn">Agora</button>
@@ -158,10 +158,10 @@
         y: {
           min: 0,
           max: 40,
-          ticks: { 
-            callback: function(v) { 
-              return v + "%"; 
-            } 
+          ticks: {
+            callback: function (v) {
+              return v + "%";
+            }
           }
         }
       }
@@ -182,10 +182,10 @@
   // atualizar o gráfico em tempo real
   function atualizarGrafico() {
     fetch(`${API_URL}/dashboard`)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(sensores) {
+      .then(function (sensores) {
         var agora = new Date();
         var horas = String(agora.getHours()).padStart(2, '0');
         var minutos = String(agora.getMinutes()).padStart(2, '0');
@@ -233,7 +233,7 @@
 
         gasChart.update();
       })
-      .catch(function(erro) {
+      .catch(function (erro) {
         console.log("Erro ao atualizar gráfico:", erro);
       });
   }
@@ -241,12 +241,13 @@
   // Atualiza KPIs
   function atualizarKpis() {
     fetch(`${API_URL}/dashboard`)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(sensores) {
+      .then(function (sensores) {
+        console.log(sensores)
         var sensor1 = undefined;
-        
+
         for (var i = 0; i < sensores.length; i++) {
           if (sensores[i].sensor == 1) {
             sensor1 = sensores[i];
@@ -254,35 +255,39 @@
           }
         }
 
+        console.log(sensor1);
+
         var colorKPI = document.getElementById("colorKPI");
         var statusKpi = document.querySelector(".status-pill");
         var gasPercent = document.querySelector(".percent");
         var bar = document.querySelector(".bar");
         var helpStatus = document.querySelector(".help-status");
+        var alertNumber = document.querySelector(".alert-number");
 
-        var g = sensor1.porcentagem;
+        alertNumber.innerHTML = sensor1?.qtdeAlertas + " Alertas";
+
+        var g = sensor1?.porcentagem || 0;
 
         gasPercent.innerHTML = g + "%";
         bar.style.width = g + "%";
 
         if (g >= 15) {
-          colorKPI.style.background = "#f2dede";
+          colorKPI.style.background = "#c9302c";   // vermelho claro mais contrastado
           statusKpi.innerHTML = "PERIGO";
-          statusKpi.style.background = "#d9534f";
           helpStatus.innerHTML = "Ativo – Alerta enviado";
+
         } else if (g >= 11) {
-          colorKPI.style.background = "#fcf8e3";
+          colorKPI.style.background = "#ff7700";   // amarelo claro mais visível
           statusKpi.innerHTML = "ATENÇÃO";
-          statusKpi.style.background = "#ff8800";
           helpStatus.innerHTML = "Atenção – Vazamento moderado";
+
         } else {
-          colorKPI.style.background = "#dff0d8";
+          colorKPI.style.background = "#1f7f75";   // verde claro mais contrastado
           statusKpi.innerHTML = "SEGURO";
-          statusKpi.style.background = "#2A9A90";
           helpStatus.innerHTML = "Tudo normal";
         }
       })
-      .catch(function(erro) {
+      .catch(function (erro) {
         console.log("Erro ao atualizar KPIs:", erro);
       });
   }
@@ -290,17 +295,17 @@
   // Atualiza tabela
   function atualizarTabelaSensores() {
     fetch(`${API_URL}/dashboard`)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(sensores) {
+      .then(function (sensores) {
         var tbody = document.querySelector(".sensor-card table tbody");
         tbody.innerHTML = "";
 
         for (var i = 0; i < sensores.length; i++) {
           var s = sensores[i];
           var corValor = "green-text";
-          
+
           if (s.porcentagem >= 15) {
             corValor = "red-text";
           } else if (s.porcentagem >= 11) {
@@ -324,13 +329,13 @@
           `;
         }
       })
-      .catch(function(erro) {
+      .catch(function (erro) {
         console.log("Erro ao atualizar tabela:", erro);
       });
   }
 
   // Intervalo de atualização a cada 3 segundos
-  setInterval(function() {
+  setInterval(function () {
     atualizarGrafico();
     atualizarKpis();
     atualizarTabelaSensores();

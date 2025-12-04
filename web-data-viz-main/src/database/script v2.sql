@@ -1,6 +1,5 @@
 CREATE DATABASE gnv_solutions_v2;
 USE gnv_solutions_v2;
-
 -- tabela POSTO
 CREATE TABLE posto (
 idPosto INT AUTO_INCREMENT PRIMARY KEY,
@@ -10,7 +9,6 @@ bairro VARCHAR(50) NOT NULL,
 cnpj CHAR(18) NOT NULL,
 bandeira VARCHAR(45) DEFAULT 'Bandeira Branca/SemBandeira'
 );
-
 INSERT INTO posto (idPosto, rua, bairro, cnpj, bandeira) VALUES
 (1, 'Rua das Flores, 120', 'Centro', '12.345.678/0001-99', 'Shell'),
 (2, 'Av. Paulista, 900', 'Bela Vista', '98.765.432/0001-11', 'ararinhas azuis gasolinas top'),
@@ -99,34 +97,32 @@ INSERT INTO tecnico_chamado (id_tecnico, id_chamado, funcao_tecnico) VALUES
 (2, 3, 'Suporte remoto'),
 (1, 4, 'Assistente');
 
--- TABELA MÉDIDA
-CREATE TABLE medida (
-idMedida INT PRIMARY KEY AUTO_INCREMENT,
-fkSensor INT NOT NULL,
-porcentagem_gas DECIMAL(4,1),
-dtHora DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO medida (fkSensor, porcentagem_gas) VALUES
-(1, 36.5),
-(1, 39.2),
-(2, NULL),
-(2, NULL),
-(3, 10.6),
-(3, 2.0);
-
 -- TABELA ARDUINO SENSOR
 CREATE TABLE arduinoSensor (
-idSensor INT PRIMARY KEY AUTO_INCREMENT,
-num_sensor INT NOT NULL,
-fkPosto_sensor INT,
-CONSTRAINT fkPosto_sensor FOREIGN KEY (fkPosto_sensor) REFERENCES posto(idPosto)
-) auto_increment = 100;
+    idSensor INT PRIMARY KEY AUTO_INCREMENT,
+    num_sensor INT NOT NULL,
+    fkPosto_sensor INT,
+    CONSTRAINT fkPosto_sensor FOREIGN KEY (fkPosto_sensor) REFERENCES posto(idPosto)
+) AUTO_INCREMENT = 100;
 
 INSERT INTO arduinoSensor (idSensor, num_sensor, fkPosto_sensor) VALUES
-(101, 1, 1),
-(102, 2, 2),
-(103, 3, 3);
+(1, 1, 1);
+ 
 
--- PARA RECRIAR RÁPIDO
-drop database gnv_solutions_v2;
+CREATE TABLE medida (
+    idMedida INT PRIMARY KEY AUTO_INCREMENT,
+    fkSensor INT NOT NULL,
+    porcentagem_gas DECIMAL(4,1),
+    dtHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES arduinoSensor(idSensor)
+);
+INSERT INTO medida (fkSensor, porcentagem_gas) VALUES
+(1, 8);
+INSERT INTO medida (fkSensor, porcentagem_gas) VALUES
+(1, 16);
+
+select * from medida;
+
+SELECT COUNT(*) FROM medida
+        WHERE dtHora >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+	    AND porcentagem_gas >= 15
