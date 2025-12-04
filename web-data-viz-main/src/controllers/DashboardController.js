@@ -1,44 +1,55 @@
-const Medida = require("../models/Medida");
-const Sensor = require("../models/sensor");
+var Medida = require("../models/Medida");
+var Sensor = require("../models/sensor");
+
+function dadosDashboard(req, res) {
+    Sensor.getAll()
+        .then(function (sensores) {
+            var result = [];
+            var promessas = [];
+
+            for (var i = 0; i < sensores.length; i++) {
+                var sensor = sensores[i];
+                
+                // Busca a última medida do sensor:
+                var promessa = Medida.getUltimasMedidas(sensor.idSensor, 1)
+                    .then(function (medidas) {
+                        var porcentagem = 0;
+                        
+                        if (medidas.length > 0 && medidas[0].porcentagem_gas != undefined) {
+                            porcentagem = Number(medidas[0].porcentagem_gas);
+                        }
+
+                        // Classificação
+                        var status = "Seguro";
+                        if (porcentagem >= 15) {
+                            status = "Perigo";
+                        } else if (porcentagem >= 11) {
+                            status = "Atenção";
+                        }
+
+                        return {
+                            idSensor: sensor.idSensor,
+                            sensor: sensor.num_sensor,
+                            posto: sensor.fkPosto_sensor,
+                            porcentagem: porcentagem,
+                            status: status
+                        };
+                    });
+                
+                promessas.push(promessa);
+            }
+
+            return Promise.all(promessas);
+        })
+        .then(function (resultados) {
+            res.json(resultados);
+        })
+        .catch(function (erro) {
+            console.log("Erro no DashboardController:", erro);
+            res.status(500).json({ error: "Erro interno ao carregar dashboard" });
+        });
+}
 
 module.exports = {
-  async dadosDashboard(req, res) {
-    try {
-      const sensores = await Sensor.getAll();
-      const result = [];
-
-      for (const sensor of sensores) {
-
-        // Busca a última medida do sensor:
-        const medidas = await Medida.getUltimasMedidas(sensor.idSensor, 1);
-
-        const porcentagem =
-          medidas.length > 0 && medidas[0].porcentagem_gas !== null
-            ? Number(medidas[0].porcentagem_gas)
-            : 0;
-
-        // Classificação
-        const status =
-          porcentagem >= 15
-            ? "Perigo"
-            : porcentagem >= 11
-            ? "Atenção"
-            : "Seguro";
-
-        result.push({
-          idSensor: sensor.idSensor,
-          sensor: sensor.num_sensor,
-          posto: sensor.fkPosto_sensor,
-          porcentagem,
-          status
-        });
-      }
-
-      res.json(result);
-
-    } catch (err) {
-      console.error("Erro no DashboardController:", err);
-      res.status(500).json({ error: "Erro interno ao carregar dashboard" });
-    }
-  }
+    dadosDashboard
 };

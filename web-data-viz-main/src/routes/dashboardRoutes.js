@@ -1,7 +1,11 @@
-const express = require("express");
-const router = express.Router();
-const DashboardController = require("../controllers/DashboardController");
+// dashboardRoutes.js
+var express = require("express");
+var router = express.Router();
 
-router.get("/", DashboardController.dadosDashboard);
+var DashboardController = require("../controllers/DashboardController");
+
+router.get("/", function (req, res) {
+    DashboardController.dadosDashboard(req, res);
+});
 
 module.exports = router;

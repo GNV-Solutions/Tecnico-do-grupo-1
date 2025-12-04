@@ -24,3 +24,4 @@ function InserirDadosPosto(nomePosto, bandeira, cnpj, rua, bairro) {
     InserirDadosPosto,
     getResumoPosto
   };
+

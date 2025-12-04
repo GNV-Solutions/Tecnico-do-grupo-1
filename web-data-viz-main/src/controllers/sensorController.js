@@ -1,21 +1,29 @@
-const Sensor = require("../models/sensor");
+// sensorController.js
+var Sensor = require("../models/sensor");
+
+function listar(req, res) {
+    Sensor.getAll()
+        .then(function (sensores) {
+            res.json(sensores);
+        })
+        .catch(function (erro) {
+            res.status(500).json({ error: erro });
+        });
+}
+
+function buscar(req, res) {
+    var idSensor = req.params.idSensor;
+
+    Sensor.getById(idSensor)
+        .then(function (sensor) {
+            res.json(sensor);
+        })
+        .catch(function (erro) {
+            res.status(500).json({ error: erro });
+        });
+}
 
 module.exports = {
-  async listar(req, res) {
-    try {
-      const sensores = await Sensor.getAll();
-      res.json(sensores);
-    } catch (err) {
-      res.status(500).json({ error: err });
-    }
-  },
-
-  async buscar(req, res) {
-    try {
-      const sensor = await Sensor.getById(req.params.idSensor);
-      res.json(sensor);
-    } catch (err) {
-      res.status(500).json({ error: err });
-    }
-  }
+    listar,
+    buscar
 };

@@ -1,8 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const MedidaController = require("../controllers/medidaController");
+// medidaRoutes.js
+var express = require("express");
+var router = express.Router();
 
-router.get("/ultimas/:idSensor", MedidaController.ultimas);
-router.post("/inserir/:idSensor", MedidaController.inserir);
+var MedidaController = require("../controllers/medidaController");
+
+router.get("/ultimas/:idSensor", function (req, res) {
+    MedidaController.ultimas(req, res);
+});
+
+router.post("/inserir/:idSensor", function (req, res) {
+    MedidaController.inserir(req, res);
+});
 
 module.exports = router;
