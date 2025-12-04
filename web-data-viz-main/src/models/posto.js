@@ -1,7 +1,5 @@
 const database = require("../database/config");
-
-module.exports = {
-  getResumoPosto(idPosto) {
+function getResumoPosto(idPosto) {
     const instrucao = `
       SELECT
         p.rua, p.bairro, p.bandeira,
@@ -11,5 +9,18 @@ module.exports = {
     `;
 
     return database.executar(instrucao).then(res => res[0]);
+  };
+function InserirDadosPosto(nomePosto, bandeira, cnpj, rua, bairro) {
+    console.log(`ESTOU TENTANDO INSERIR DADOS POSTO\n \n\t\t >> `);
+    var instrucao = `
+      INSERT INTO posto(rua, bairro, cnpj, bandeira)
+      VALUES
+      ('${rua}', '${bairro}', '${cnpj}', '${bandeira}');
+    `;
+    return database.executar(instrucao);
   }
-};
+
+  module.exports = {
+    InserirDadosPosto,
+    getResumoPosto
+  };
