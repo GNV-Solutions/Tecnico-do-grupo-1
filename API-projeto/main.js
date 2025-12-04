@@ -20,9 +20,9 @@ let poolBancoDados = mysql.createPool(
 {
 host: 'localhost',
 user: 'aluno',
-password: 'Sptech#2024',
+password: 'sptech',
 database: 'gnv_solutions_v2',
-port: 3307
+port: 3306
 }
 ).promise();
 
@@ -62,22 +62,9 @@ if (HABILITAR_OPERACAO_INSERIR) {
 // este insert irá inserir os dados na tabela "medida"
 await poolBancoDados.execute(
 'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (1, ?)',
-[sensorPorcentagem]
+[sensorPorcentagem - 85]
 );
 console.log("valores inseridos no banco: ", sensorPorcentagem);
-
-await poolBancoDados.execute(
-'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (3, ?)',
-[sensorPorcentagem - 6]
-);
-console.log("valores inseridos no banco: ", sensorPorcentagem - 6);
-
-await poolBancoDados.execute(
-'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (4, ?)',
-[sensorPorcentagem + 20]
-);
-console.log("valores inseridos no banco: ", sensorPorcentagem + 20);
-
 }
 
 });

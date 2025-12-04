@@ -10,7 +10,10 @@ var path = require("path");
 
 var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
-
+var apiKey = process.env.MINHA_CHAVE;
+module.exports = {
+    apiKey
+}
 var app = express();
 
 // MIDDLEWARES
@@ -27,16 +30,14 @@ var medidaSensorRouter = require("./src/routes/medidaRoutes");
 var dashboardRouter = require("./src/routes/dashboardRoutes");
 var postoRouter = require("./src/routes/postoRoute");
 var funcionarioRouter = require("./src/routes/funcionarioRoute");
-var iaRouter = require("./src/routes/bobIARoute");
-
-app.use("/ia", iaRouter);
+var bobIARouter = require("./src/routes/bobIARoute")
 // PREFIXOS CORRETOS
 app.use("/sensores", sensorRouter);     // GET /sensores
 app.use("/medidas", medidaSensorRouter); // GET /medidas/ultimas/101
 app.use("/dashboard", dashboardRouter);  // GET /dashboard
 app.use("/posto", postoRouter);
 app.use("/funcionario", funcionarioRouter);
-app.use("/ia", iaRouter);
+app.use("/bobia", bobIARouter)
 
 // ROTA PRINCIPAL → SERVE O INDEX
 app.get("/", (req, res) => {
