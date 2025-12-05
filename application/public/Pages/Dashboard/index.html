@@ -16,19 +16,24 @@
       <span class="brand">GNV Solutions</span>
     </div>
 
-    <div class="header-actions">
-      <button class="helpdesk-btn"> Help Desk</button>
-    </div>
+<div class="header-actions">
+  <a href="https://breno-do-carmo-abilio.atlassian.net/servicedesk/customer/portal/34/user/login?destination=portal%2F34" target="_blank">
+    <button class="helpdesk-btn">Help Desk</button>
+  </a>
+</div>
   </header>
 
 
   <main class="container">
 
     <section class="kpi-section">
+
       <div class="kpi-card yellow">
         <h3>Help Desk</h3>
-        <p class="title">Status:</p>
-        <span class="help-status">Ativo e disponível</span>
+        <div class="status-kpi">
+          <p class="title">Status:</p>
+          <span class="help-status">Ativo e disponível</span>
+        </div>
       </div>
 
 
@@ -46,8 +51,10 @@
         </div>
         <p class="percent">22%</p>
         <div class="legend-row">
-          <div><span class="dot red-dot"></span>Porcentagem Crítica</div>
-          <div><span class="dot green-dot"></span>Porcentagem segura</div>
+          <div><span class="dot red-dot"></span>Crítica</div>
+          <div><span class="dot orange-dot"></span>Atenção</div>
+          <div><span class="dot green-dot"></span>Segura</div>
+
         </div>
       </div>
 
@@ -67,7 +74,7 @@
 
     <section class="chart-section">
       <div class="chart-header">
-        <button class="time-btn">Agora</button>
+        <!-- <button class="time-btn">Agora</button> -->
         <h2>Detecção de gás (em %)</h2>
         <p>Gráfico com porcentagem detectada em tempo real, caso queira, selecione um período.</p>
       </div>
@@ -87,7 +94,7 @@
         <p>A segurança de seu posto é representada pelas seguintes cores:</p>
         <ul>
           <li><span class="dot red-dot"></span> Vazamento Crítico <strong>15%</strong></li>
-          <li><span class="dot orange-dot"></span> Vazamento alerta<strong>6% - 14%</strong></li>
+          <li><span class="dot orange-dot"></span> Vazamento alerta<strong>6%-14%</strong></li>
           <li><span class="dot green-dot"></span> Vazamento seguro <strong>5%</strong></li>
         </ul>
       </div>
@@ -99,7 +106,7 @@
       <div class="sensor-card">
         <div class="header">
           <h3>Sensores</h3>
-          <button class="filter-btn">Filtrar</button>
+          <!-- <button class="filter-btn">Filtrar</button> -->
         </div>
         <table>
           <thead>
@@ -245,14 +252,13 @@
           }
         }
 
-        console.log(sensor1);
-
         var colorKPI = document.getElementById("colorKPI");
         var statusKpi = document.querySelector(".status-pill");
         var gasPercent = document.querySelector(".percent");
         var bar = document.querySelector(".bar");
         var helpStatus = document.querySelector(".help-status");
         var alertNumber = document.querySelector(".alert-number");
+        var alertMsg = document.querySelector(".alert-msg")
 
         alertNumber.innerHTML = sensor1?.qtdeAlertas + " Alertas";
 
@@ -262,19 +268,29 @@
         bar.style.width = g + "%";
 
         if (g >= 15) {
-          colorKPI.style.background = "#c9302c";
+          colorKPI.style.background = "#ff0000";
           statusKpi.innerHTML = "PERIGO";
-          helpStatus.innerHTML = "Ativo – Alerta enviado";
+          alertMsg.innerHTML = "Tome uma medida IMEDIATAMENTE.";
+          alertMsg.style.display = "block";
+          bar.style.background = "#ff0000"
+          gasPercent.style.color = "#ff0000"
+          // helpStatus.innerHTML = "Ativo – Alerta enviado";
 
         } else if (g >= 11) {
           colorKPI.style.background = "#ff7700";
           statusKpi.innerHTML = "ATENÇÃO";
-          helpStatus.innerHTML = "Atenção – Vazamento moderado";
+          alertMsg.innerHTML = "Verifique o local do vazamento.";
+          alertMsg.style.display = "block";
+          bar.style.background = "#ff7700";
+          gasPercent.style.color = "#ff7700";
+          // helpStatus.innerHTML = "Atenção – Vazamento moderado";
 
         } else {
           colorKPI.style.background = "#1f7f75";
           statusKpi.innerHTML = "SEGURO";
-          helpStatus.innerHTML = "Tudo normal";
+          bar.style.background = "#1f7f75";
+          gasPercent.style.color = "#1f7f75";
+          // helpStatus.innerHTML = "Tudo normal";
         }
       })
       .catch(function (erro) {
