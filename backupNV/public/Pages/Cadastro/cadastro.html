@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - GNV Solutions</title>
+    <link rel="stylesheet" href="../../css/Cadastro/style.cad.css">
+    <link rel="stylesheet" href="../../css/reset.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="sub-main-container">
+            <div class="title-page-container">
+                <div class="title-section">
+                    <h1>Dados do Posto</h1>
+                    <p>Insira os dados de seu posto e de seus funcionários, lembre se de se atentar a permissão deles.
+                        Caso queira checar os usuários já criados, clique no botão "Visualizar" ao lado.</p>
+                </div>
+                <div class="logo-section">
+                    <img src="./Assets/LOGO DA EMPRESA.png" alt="">
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="posto-container">
+                    <div class="sub-posto-container">
+                        <div>
+                            <span>Nome do Posto</span>
+                            <input id="nomePostoInput" type="text" placeholder="EX: Posto Shell" value="Posto Shell Centro">
+                        </div>
+                        <div>
+                            <span>Bandeira</span>
+                            <input id="bandeiraInput" type="text" placeholder="EX: Shell" value="Shell">
+                        </div>
+                        <div>
+                            <span>CNPJ</span>
+                            <input id="cnpjInput" type="text" placeholder="EX: 82.572.761/0001-82" value="12.345.678/0001-99">
+                        </div>
+                        <div>
+                            <span>CEP</span>
+                            <input id="cepInput" type="text" placeholder="EX: 09941-280" value="01010-000">
+                        </div>
+                        <div>
+                            <span>Numero do Posto</span>
+                            <input id="numeroInput" type="text" placeholder="EX: 1628" value="120">
+                        </div>
+                    </div>
+                </div>
+                <div class="funcionario-container">
+                    <div class="sub-funcionario-container">
+                        <div class="title-funcionario-container">
+                            <h1>Dados do Usuário</h1>
+                            <p>Insira os dados de cada funcionario, ao terminar de preencher clique em Adicionar, caso
+                                necessário refaça o processo para mais funcionários</p>
+                        </div>
+                        <div class="funcionario-form-container">
+                            <div class="funcionario-form-container side1">
+                                <div class="form-div">
+                                    <span>Nome Completo</span>
+                                    <input id="nomeInput" type="text" placeholder="EX: Ana Silva" value="Carlos Andrade">
+                                </div>
+                                <div class="form-div">
+                                    <span>Email</span>
+                                    <input id="emailInput" type="text" placeholder="EX: ana.silva@posto.com" value="carlos.andrade@posto1.com">
+                                </div>
+                                <div class="form-div">
+                                    <span>Permissão</span>
+                                    <select id="permissaoSelect">
+                                        <option value="Gerente">Gerente</option>
+                                        <option value="Comum">Comum</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="funcionario-form-container side2">
+                                <div class="form-div">
+                                    <span>Senha</span>
+                                    <input id="senhaInput" type="password" placeholder="EX: senha123" value="senha123">
+                                </div>
+                                <div class="form-div">
+                                    <span>Confirmar Senha</span>
+                                    <input id="confirmarSenhaInput" type="password" placeholder="EX: senha123" value="senha123">
+                                </div>
+                                <div class="buttons-form-funcionario">
+                                    <button class="btn-1" onclick="abrirModal()">Visualizar</button>
+                                    <button class="btn-2" onclick="adicionarFuncionario()">Cadastrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-container">
+                <div class="nav-link">
+                    <a href="">
+                        <img src="./Assets/Back.png" alt="">
+                        <a href="">Voltar a página anterior</a>
+                    </a>
+                </div>
+                <div class="btn-concluir">
+                    <button onclick="concluirCadastro()">Concluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-conteudo">
+            <br><br><br>
+            <h3>Funcionários Cadastrados</h3>
+            <br><br><br>
+            <table id="tabela-funcionarios"></table>
+            <button class="btn-concluir-modal" onclick="concluir()">Concluir</button>
+        </div>
+    </div>
+</body>
+
+<script>
+var funcionariosCadastrados = [];
+
+function cadastrarPosto() {
+    var nomePosto = document.getElementById("nomePostoInput").value;
+    var bandeira = document.getElementById("bandeiraInput").value;
+    var cnpj = document.getElementById("cnpjInput").value;
+    var cep = document.getElementById("cepInput").value;
+    var numero = document.getElementById("numeroInput").value;
+
+    fetch('/posto/cadastrar', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nomePostoServer: nomePosto,
+            bandeiraServer: bandeira,
+            cnpjServer: cnpj,
+            ruaServer: cep,
+            bairroServer: numero
+        })
+    })
+        .then(function (resposta) {
+            resposta.json()
+                .then(function (respostaConversao) {
+                    console.log(respostaConversao);
+                    sessionStorage.setItem("ID_POSTO", respostaConversao.insertId);
+                    console.log("Posto cadastrado com sucesso!");
+                })
+                .catch(function (erroConversao) {
+                    console.log(erroConversao);
+                })
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        })
+}
+
+function adicionarFuncionario() {
+    var nome = document.getElementById("nomeInput").value;
+    var email = document.getElementById("emailInput").value;
+    var senha = document.getElementById("senhaInput").value;
+    var confirmarSenha = document.getElementById("confirmarSenhaInput").value;
+    var permissao = document.getElementById("permissaoSelect").value;
+
+    if (senha !== confirmarSenha) {
+        alert("As senhas não coincidem!");
+        return;
+    }
+
+    var funcionario = {
+        nome: nome,
+        email: email,
+        senha: senha,
+        permissao: permissao
+    };
+
+    funcionariosCadastrados.push(funcionario);
+
+    alert("Funcionário adicionado à lista!");
+    limparCamposFuncionario();
+}
+
+function limparCamposFuncionario() {
+    document.getElementById("nomeInput").value = "";
+    document.getElementById("emailInput").value = "";
+    document.getElementById("senhaInput").value = "";
+    document.getElementById("confirmarSenhaInput").value = "";
+}
+
+function abrirModal() {
+    var modal = document.getElementById("modal");
+    var tabela = document.getElementById("tabela-funcionarios");
+
+    var tabelaHtml = `
+        <thead>
+          <tr>
+            <th><b>Nome</b></th>
+            <th><b>Email</b></th>
+            <th><b>Permissão</b></th>
+            <th><b>Ação</b></th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    for (var i = 0; i < funcionariosCadastrados.length; i++) {
+        tabelaHtml += `
+          <tr>
+            <td>${funcionariosCadastrados[i].nome}</td>
+            <td>${funcionariosCadastrados[i].email}</td>
+            <td>${funcionariosCadastrados[i].permissao}</td>
+            <td><button class="remove-btn-modal" onclick="removerFuncionario(${i})">Remover</button></td>
+          </tr>
+        `;
+    }
+
+    tabelaHtml += "</tbody>";
+    tabela.innerHTML = tabelaHtml;
+
+    modal.style.display = "block";
+}
+
+function removerFuncionario(indice) {
+    var novoArray = [];
+    for (var i = 0; i < funcionariosCadastrados.length; i++) {
+        if (i !== indice) {
+            novoArray.push(funcionariosCadastrados[i]);
+        }
+    }
+    funcionariosCadastrados = novoArray;
+    abrirModal();
+}
+
+function concluirCadastro() {
+    if (funcionariosCadastrados.length === 0) {
+        alert("Adicione pelo menos um funcionário antes de concluir!");
+        return;
+    }
+
+    cadastrarPosto();
+
+    setTimeout(function() {
+        var idPosto = sessionStorage.getItem("ID_POSTO");
+        cadastrarFuncionarios(idPosto);
+    }, 1000);
+}
+
+function cadastrarFuncionarios(idPosto) {
+    var idGerente = null;
+
+    function cadastrarProximo(index) {
+        if (index >= funcionariosCadastrados.length) {
+            alert("Cadastro concluído com sucesso!");
+            window.location.href = "../Login/index.html";
+            return;
+        }
+
+        var funcionario = funcionariosCadastrados[index];
+        var fkGerente = funcionario.permissao === "Gerente" ? null : idGerente;
+
+        fetch('/funcionario/cadastrar', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: funcionario.nome,
+                emailServer: funcionario.email,
+                senhaServer: funcionario.senha,
+                fkPostoServer: idPosto,
+                fkGerenteServer: fkGerente
+            })
+        })
+            .then(function (resposta) {
+                resposta.json()
+                    .then(function (respostaConversao) {
+                        console.log(respostaConversao);
+                        if (funcionario.permissao === "Gerente" && idGerente === null) {
+                            idGerente = respostaConversao.insertId;
+                        }
+                        cadastrarProximo(index + 1);
+                    })
+                    .catch(function (erroConversao) {
+                        console.log(erroConversao);
+                        alert("Erro ao cadastrar funcionário!");
+                    })
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                alert("Erro ao cadastrar funcionário!");
+            })
+    }
+
+    cadastrarProximo(0);
+}
+
+function concluir() {
+    var modal = document.getElementById("modal");
+    modal.style.display = "none";
+}
+</script>
+
+</html>

@@ -1,0 +1,114 @@
+.container-sensor {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container-sensor h1 {
+  text-align: center;
+  font-family: 'Poppins';
+  color: black;
+  font-weight: 300;
+  margin-top: 80px;
+  font-size: 40px;
+}
+.sub-container-sensor {
+  width: 80%;
+  height: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+.card-sensor {
+  width: 30%;
+  height: 100%;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.btn-sensor-container {
+  width: 100%;
+  display: flex;
+  height: 15%;
+  align-items: center;
+  justify-content: center;
+}
+.btn-sensor-container div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.btn-details {
+
+width: 10em;
+  height: 3em;
+  border: 0;
+  background-color: white;
+  border-radius: 13px;
+  font-family: 'Poppins';
+  cursor: pointer;
+  transition: 200ms;
+}
+.btn-details:hover {
+    width: 10.5em;
+    height: 3.5em;
+    opacity: 0.9;
+}
+.btn-arrow:hover {
+    width: 3.3em;
+    height: 3.3em;
+    opacity: 0.9;
+}
+
+
+.btn-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: white;
+  width: 3em;
+  height: 3em;
+  border-radius: 26px;
+  cursor: pointer;
+  transition: 200ms;
+}
+.leak {
+  background-image: url('../../assets/vazamento-stock.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.supply{
+    background-image: url('../../assets/abastecimento-stock.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.alarm{
+    background-image: url('../../assets/alarm-stock.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.section-sensor {
+  width: 100%;
+  height: 50%;
+  color: white;
+  font-family: 'Poppins';
+}
+.section-sensor h3 {
+  font-size: 25px;
+  padding-left: 20px;
+}
+.section-sensor p {
+  font-size: 20px;
+  padding-left: 20px;
+}
