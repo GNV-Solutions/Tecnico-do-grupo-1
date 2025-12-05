@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/Login/style.css" />
+    <title>GNV SOLUTIONS | LOGIN</title>
+  </head>
+  <body>
+    <div class="principal">
+      <div class="login-banner">
+        <div class="login-container">
+          <h3 class="titulo">Junte-se a nós</h3>
+          <span class="p"
+            >Clique em um desses passos para <br />
+            utilizar nosso serviço</span
+          >
+          <div class="cards">
+            <div class="box1">
+              <div class="bola">1</div>
+              <p><a href="../Cadastro/cadastro.html">Crie sua conta</a></p>
+              <span> ⇣ </span>
+            </div>
+
+            <div class="box2">
+              <div class="bola">2</div>
+              <p>Login</p>
+              <span>  </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conteudo-container">
+        <img src="./Assets/LOGO DA EMPRESA.png" alt="" />
+        <h1>Entre em sua conta</h1>
+        <p class="h1-conteudo">
+          Insira suas credenciais para<br />
+          entrar em sua conta
+        </p>
+        <div>
+          <button class="botaoContato">Google</button>
+          <button class="botaoContato">Apple</button>
+        </div>
+        <div class="login-campos">
+          <p>Email</p>
+          <input type="text" placeholder="Ex: AnaMatos@gmail.com" id="input_email" value="carlos.andrade@posto.com"/><br />
+          <p>Senha</p>
+          <input type="password" placeholder="Insira sua senha" id="input_senha" value="senha123" />
+          <span>Os campos devem ser preenchidos</span>
+          <div id="div_mensagem"></div>
+        </div>
+        <div class="botao">
+          <button onclick="entrar()">Entrar</button>
+          <p>
+            Ainda não tem uma conta? <span><a href="../Cadastro/cadastro.html">Criar</a></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+function entrar() {
+    var email = document.getElementById("input_email").value;
+    var senha = document.getElementById("input_senha").value;
+
+    if (email == "" || senha == "") {
+        alert("Preencha todos os campos!");
+        return;
+    }
+
+    fetch('/funcionario/logar', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: email,
+            senhaServer: senha
+        })
+    })
+        .then(function (resposta) {
+            resposta.json()
+                .then(function (respostaConversao) {
+                    console.log(respostaConversao);
+                    if (respostaConversao.length > 0) {
+                        sessionStorage.setItem("ID_FUNCIONARIO", respostaConversao[0].idFuncionario);
+                        sessionStorage.setItem("NOME_FUNCIONARIO", respostaConversao[0].nome);
+                        sessionStorage.setItem("EMAIL_FUNCIONARIO", respostaConversao[0].email);
+                        sessionStorage.setItem("ID_POSTO", respostaConversao[0].fkPosto_funcionario);
+                        sessionStorage.setItem("FK_GERENTE", respostaConversao[0].fkGerente);
+                        console.log(respostaConversao)
+                        alert("Login realizado com sucesso!");
+                        window.location.href = "../Dashboard/index.html";
+                    } else {
+                        alert("Email ou senha incorretos!");
+                    }
+                })
+                .catch(function (erroConversao) {
+                    console.log(erroConversao);
+                    alert("Erro ao processar resposta!");
+                })
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            alert("Erro ao realizar login!");
+        })
+}
+</script>

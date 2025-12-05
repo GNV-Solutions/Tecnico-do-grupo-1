@@ -19,19 +19,36 @@ valoresSensorAnalogico,
 let poolBancoDados = mysql.createPool(
 {
 host: 'localhost',
-user: 'aluno',
-password: 'sptech',
+user: 'root',
+password: '1234',
 database: 'gnv_solutions_v2',
 port: 3306
 }
 ).promise();
 
 // lista as portas seriais disponíveis e procura pelo Arduino
-const portas = await serialport.SerialPort.list();
-const portaArduino = portas.find((porta) => porta.vendorId == 2341 && porta.productId == 43);
-if (!portaArduino) {
-throw new Error('O arduino não foi encontrado em nenhuma porta serial');
-}
+//const portas = await serialport.SerialPort.list();
+//const portaArduino = portas.find((porta) => porta.vendorId == 2341 && porta.productId == 43);
+//if (!portaArduino) {
+//throw new Error('O arduino não foi encontrado em nenhuma porta serial');
+//}
+
+console.log("Modo simulação SEM Arduino ativo.");
+
+setInterval(() => {
+    const sensorPorcentagem = (Math.random() * 10 + 20).toFixed(2);
+    valoresSensorAnalogico.push(sensorPorcentagem);
+    console.log("Simulado:", sensorPorcentagem);
+    if (HABILITAR_OPERACAO_INSERIR) {
+        poolBancoDados.execute(
+            'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (1, ?)',
+            [sensorPorcentagem]
+        );
+    }
+
+}, 1000);
+
+return; // não executa porta serial real
 
 // configura a porta serial com o baud rate especificado
 const arduino = new serialport.SerialPort(
