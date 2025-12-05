@@ -2,236 +2,274 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - GNV Solutions</title>
-  <link rel="stylesheet" href="../../css/Gerente/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GNV Solutions</title>
+    <link rel="stylesheet" href="../../css/Gerente/style.css">
 </head>
 
 <body>
-  <div class="dashboard">
-    <main class="main-content">
-      <header class="header">
-        <img src="../../../Assets/LOGO DA EMPRESA.png" alt="">
-        <!-- <div class="notification-icon"><img src="../../Assets/mi_notification.svg" alt=""></div> -->
-      </header>
+    <div class="dashboard">
+        <main class="main-content">
+            <header class="header">
+                <img src="../../../Assets/LOGO DA EMPRESA.png" alt="">
+                <a href="../../index.html" style="text-decoration: none; color: black; font-size: 20px;">Sair</a>
+            </header>
 
-      <!-- <div class="cards-grid">
-            <div class="card">
-              <h3>Status de segurança p/Posto</h3>
-              <div class="status-list">
-                <div class="status-item">Posto 1</div>
-                <div class="status-item danger">Posto 5 <span class="badge-danger">PERIGO</span></div>
-                <div class="status-item danger">Posto 6 <span class="badge-danger">PERIGO</span></div>
-              </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Help Desk</h3>
+                    <div class="status-list">
+                        <p>Para acessar nosso serviço de atendimento, escolha o tipo, por IA (resposta instantânea), ou
+                            abra um chamado (Serviço personalizado)</p>
+                        <div>
+                            <a href="https://breno-do-carmo-abilio.atlassian.net/servicedesk/customer/portal/34/user/login?destination=portal%2F34"><button class="botao-help">Acessar</button></a>
+                            <a href="../../#form"><button class="botao-help">Atendimento IA</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card situation">
+                    <h4 class="situation-text">Situação geral:</h4>
+                    <div class="situation-header">
+                        <span class="badge-danger large">PERIGO</span>
+                        <span class="percentage-large">22% Gás</span>
+                    </div>
+                    <div class="situation-details">
+                        <p><strong>Posto 5</strong></p>
+                        <p><span class="danger-text">Dispenser 3</span></p>
+                        <p class="danger-text">Tome medidas cautelares imediatamente.</p>
+                    </div>
+                </div>
+
+                <div class="card" id="cardResumo">
+                    <h3>Resumo</h3>
+                    <p>3 postos em estado crítico, sendo o Posto 5 o mais afetado.</p>
+                    <p>Tendência de aumento nos vazamentos nas últimas 24h.</p>
+                </div>
+
+                <div class="card incidents-card">
+                    <h3>Tipos de Incidentes</h3>
+                    <div class="incident-item">
+                        <span class="dot dot-red"></span>
+                        <span>Vazamento Crítico</span>
+                        <span class="incident-percent danger">~15%</span>
+                    </div>
+                    <div class="incident-item">
+                        <span class="dot dot-orange"></span>
+                        <span>Vazamento alerta</span>
+                        <span class="incident-percent alert">5%~15%</span>
+                    </div>
+                    <div class="incident-item">
+                        <span class="dot dot-green"></span>
+                        <span>Vazamento seguro</span>
+                        <span class="incident-percent safe">5%</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="card situation">
-              <h4 class="situation-text">Situação geral:</h4>
-              <div class="situation-header">
-                <span class="badge-danger large">PERIGO</span>
-                <span class="percentage-large">22% Gás</span>
-              </div>
-              <div class="situation-details">
-                <p><strong>Posto 5</strong></p>
-                <p>Local: <span class="danger-text">Dispenser 3</span></p>
-                <p class="danger-text">Tome medidas cautelares imediatamente.</p>
-              </div>
+            <div class="table-section">
+                <div class="table-header">
+                    <h2>Postos</h2>
+                    <div class="table-actions">
+
+                    </div>
+                </div>
+                <table class="postos-table" id="tabela-postos">
+
+                </table>
             </div>
-
-            <div class="card">
-              <h3>Resumo</h3>
-              <p>3 postos em estado crítico, sendo o Posto 5 o mais afetado.</p>
-              <p>Tendência de aumento nos vazamentos nas últimas 24h.</p>
-            </div>
-
-            <div class="card incidents-card">
-              <h3>Tipos de Incidentes</h3>
-              <div class="incident-item">
-                <span class="dot dot-red"></span>
-                <span>Vazamento Crítico</span>
-                <span class="incident-percent danger">~15%</span>
-              </div>
-              <div class="incident-item">
-                <span class="dot dot-orange"></span>
-                <span>Vazamento alerta</span>
-                <span class="incident-percent alert">5%~15%</span>
-              </div>
-              <div class="incident-item">
-                <span class="dot dot-green"></span>
-                <span>Vazamento seguro</span>
-                <span class="incident-percent safe">5%</span>
-              </div>
-            </div>
-          </div> -->
-
-      <div class="table-section">
-        <div class="table-header">
-          <h2>Postos</h2>
-          <div class="table-actions">
-            <button class="btn-filter">Filtrar ≡</button>
-            <button class="btn-search"><img src="../../../Assets//iconamoon_search-thin.svg" alt=""></button>
-            <button class="btn-primary">Buscar posto</button>
-          </div>
-        </div>
-        <table class="postos-table" id="tabela-postos">
-
-        </table>
-      </div>
-    </main>
-  </div>
+        </main>
+    </div>
 </body>
 
 <script>
-  var API_URL = "http://localhost:3333";
+    var API_URL = "http://localhost:3333";
 
-  function atualizarKpis() {
-    fetch(`${API_URL}/dashboard`)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (sensores) {
-        console.log(sensores)
-        var sensor1 = undefined;
+    function atualizarKpis() {
+        fetch(`${API_URL}/dashboard`)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (sensores) {
+                console.log(sensores)
+                var sensor1 = undefined;
 
-        for (var i = 0; i < sensores.length; i++) {
-          if (sensores[i].sensor == 1) {
-            sensor1 = sensores[i];
-            break;
-          }
-        }
+                for (var i = 0; i < sensores.length; i++) {
+                    if (sensores[i].sensor == 1) {
+                        sensor1 = sensores[i];
+                        break;
+                    }
+                }
 
-        let qtdeAlertas = sensor1?.qtdeAlertas;
-        let percentualVazamento = sensor1?.porcentagem;
+                let qtdeAlertas = sensor1?.qtdeAlertas;
+                let percentualVazamento = sensor1?.porcentagem;
 
-        let tabela = document.getElementById("tabela-postos")
+                let cardSituation = document.querySelector(".card.situation");
+                let situationText = document.querySelector(".situation-text");
+                let badgeSituation = document.querySelector(".badge-danger.large");
+                let percentageLarge = document.querySelector(".percentage-large");
+                let situationDetails = document.querySelector(".situation-details");
 
-        let tabelaHtml = `
-            <thead>
-              <tr>
-                <th>Nome do Posto</th>
-                <th>Alertas nas últimas 24h</th>
-                <th>Percentual de vazamento</th>
-                <th>Status</th>
-                <th>Acessar</th>
-              </tr>
-            </thead>
-            <tbody>
-          `
+                percentageLarge.innerHTML = percentualVazamento + "% Gás";
 
-        let total = 6
+                if (percentualVazamento >= 15) {
+                    cardSituation.style.backgroundColor = "#c9302c";
+                    cardSituation.style.color = "#fff";
+                    cardSituation.style.fontWeight = "500";
+                    badgeSituation.innerHTML = "PERIGO";
+                    badgeSituation.style.backgroundColor = "#fff";
+                    badgeSituation.style.color = "#c9302c";
+                    situationDetails.innerHTML = `
+    <p style="color: #fff;"><strong>Posto 1</strong></p>
+    <p style="color: #fff;">Local: <span class="danger-text" style="color: #fff;">Dispenser 3</span></p>
+    <p class="danger-text" style="color: #fff;">Tome medidas cautelares imediatamente.</p>
+  `;
+                    cardResumo.innerHTML = `
+          <h3>Resumo</h3>
+          <p>Situação crítica detectada no Posto 1.</p>
+          <p>Nível de vazamento em ${percentualVazamento}% requer ação imediata.</p>
+          <p style="font-weight: 700; color: #c9302c;">Verifique o local do vazamento imediatamente!</p>
+        `;
+                } else if (percentualVazamento >= 6 && percentualVazamento <= 14) {
+                    cardSituation.style.backgroundColor = "#ff7700";
+                    cardSituation.style.color = "#fff";
+                    cardSituation.style.fontWeight = "500";
+                    badgeSituation.innerHTML = "ATENÇÃO";
+                    badgeSituation.style.backgroundColor = "#fff";
+                    badgeSituation.style.color = "#ff7700";
 
-        for (let i = 1; i <= total; i++) {
+                    situationDetails.innerHTML = `
+                    <p style="color: #fff;"><strong>Posto 1</strong></p>
+                    <p style="color: #fff;">Local: <span style="color: #fff;">Dispenser 2</span></p>
+                    <p style="color: #fff;">Verifique o local do vazamento imediatamente.</p>
+                `;
+                    cardResumo.innerHTML = `
+                    <h3>Resumo</h3>
+                    <p>Vazamento moderado detectado no Posto 1.</p>
+                    <p>Nível de ${percentualVazamento}% requer monitoramento constante.</p>
+                    <p style="font-weight: 700; color: #ff7700;">Atenção, nivel perto do teto de segurança.</p>
+                    `;
+                } else {
+                    cardSituation.style.backgroundColor = "#1f7f75";
+                    cardSituation.style.color = "#fff";
+                    cardSituation.style.fontWeight = "500";
+                    badgeSituation.innerHTML = "SEGURO";
+                    badgeSituation.style.backgroundColor = "#fff";
+                    badgeSituation.style.color = "#1f7f75";
+                    situationDetails.innerHTML = `
+                    <p style="color: #fff;"><strong>Posto 1</strong></p>
+                    <p style="color: #fff;">Local: <span style="color: #fff;">Todos os dispensers</span></p>
+                    <p style="color: #fff;">Sistema operando normalmente.</p>
+  `;
+                    cardResumo.innerHTML = `
+                    <h3>Resumo</h3>
+                    <p>Todos os sistemas operando dentro dos parâmetros normais.</p>
+                    <p>Nível de vazamento em ${percentualVazamento}% está seguro.</p>
+                    <p style="font-weight: 700; color: #1f7f75;">Manutenção preventiva em dia.</p>
+        `;
+                }
 
-          let logo = ""
-          let alertas = 0
-          let porcentagem = 0
-          let dispenser = "-"
-          let status = "SEGURO"
-          let classeStatus = "badge-safe"
-          let classePercent = "safe"
-          let setinha = "↘"
-          let classeDispenser = ""
-          let textoBotao = "Entrar no posto"
-          let percentual = "-"
-          let posto = ""
 
-          if (i === 1) {
-            logo = "../../Assets/131231.png"
-            alertas = qtdeAlertas
-            porcentagem = 40
-            dispenser = "-"
-            status = percentualVazamento >= 15 ? "PERIGO" : percentualVazamento >= 6 && percentualVazamento <= 14 ? "ATENÇÃO" : "SEGURO"
-            classeStatus = percentualVazamento >= 15 ? "badge-danger" : percentualVazamento >= 6 && percentualVazamento <= 14 ? "badge-warning" : "badge-safe"
-            classePercent = percentualVazamento >= 15 ? "danger" : percentualVazamento >= 6 && percentualVazamento <= 14 ? "warning" : "safe"
-            percentual = percentualVazamento + "%"
-            posto = "Posto 1"
-          }
+                let tabela = document.getElementById("tabela-postos")
 
-          if (i === 2) {
-            logo = "../../Assets/empty_state.svg"
-            setinha = "-"
-            porcentagem = "-"
-            status = "-"
-            textoBotao = "Indisponível"
-            posto = "-"
-          }
+                let tabelaHtml = `
+                <thead>
+                <tr>
+                    <th>Nome do Posto</th>
+                    <th>Alertas nas últimas 24h</th>
+                    <th>Percentual de vazamento</th>
+                    <th>Status</th>
+                    <th>Acessar</th>
+                </tr>
+                </thead>
+                <tbody>
+      `
 
-          if (i === 3) {
-            logo = "../../Assets/empty_state.svg"
-            setinha = "-"
-            porcentagem = "-"
-            status = "-"
-            textoBotao = "Indisponível"
-            posto = "-"
-          }
+                let total = 4
 
-          if (i === 4) {
-            logo = "../../Assets/empty_state.svg"
-            setinha = "-"
-            porcentagem = "-"
-            status = "-"
-            textoBotao = "Indisponível"
-            posto = "-"
-          }
+                for (let i = 1; i <= total; i++) {
 
-          if (i === 5) {
-            logo = "../../Assets/empty_state.svg"
-            setinha = "-"
-            porcentagem = "-"
-            status = "-"
-            textoBotao = "Indisponível"
-            posto = "-"
-          }
+                    let logo = ""
+                    let alertas = 0
+                    let porcentagem = 0
+                    let dispenser = "-"
+                    let status = "SEGURO"
+                    let classeStatus = "badge-safe"
+                    let classePercent = "safe"
+                    let textoBotao = "Entrar no posto"
+                    let percentual = "-"
+                    let posto = ""
 
-          if (i === 6) {
-            logo = "../../Assets/empty_state.svg"
-            setinha = "-"
-            porcentagem = "-"
-            status = "-"
-            textoBotao = "Indisponível"
-            posto = "-"
-          }
+                    if (i === 1) {
+                        logo = "../../Assets/131231.png"
+                        alertas = qtdeAlertas
+                        porcentagem = percentualVazamento
+                        dispenser = "-"
+                        status = percentualVazamento >= 15 ? "PERIGO" : percentualVazamento >= 6 && percentualVazamento <= 14 ? "ATENÇÃO" : "SEGURO"
+                        classeStatus = percentualVazamento >= 15 ? "badge-danger" : percentualVazamento >= 6 && percentualVazamento <= 14 ? "badge-warning" : "badge-safe"
+                        classePercent = percentualVazamento >= 15 ? "danger" : percentualVazamento >= 6 && percentualVazamento <= 14 ? "warning" : "safe"
+                        percentual = percentualVazamento + "%"
+                        posto = "Posto 1"
+                    }
+                    if (i === 2) {
+                        logo = "../../Assets/1231233.png"
+                        porcentagem = "-"
+                        status = "-"
+                        textoBotao = "Indisponível"
+                        posto = "Posto 2"
+                    }
 
-          if (status === "PERIGO") {
-            classeDispenser = "danger-text"
-          } else {
-            classeDispenser = ""
-          }
+                    if (i === 3) {
+                        logo = "../../Assets/1233112.png"
+                        porcentagem = "-"
+                        status = "-"
+                        textoBotao = "Indisponível"
+                        posto = "Posto 3"
+                    }
 
-          tabelaHtml += `
-              <tr>
-                <td>
-                  <div class="posto-nome">
-                    <img class="posto-logo" src="${logo}"" </img> <br> ${posto}
-                  </div>
-                </td>
-                <td>
-                  <span class="alert-count">${alertas}</span>
-                </td>
-                <td>
-                  <span class="percent-badge ${classePercent}">${percentual}</span>
-                  </td>
-                <td><span class="${classeStatus}">${status}</span></td>
-                <td><a href="../Dashboard/index.html"><button class="btn-access">${textoBotao}</button></a></td>
-              </tr>
-            `
-        }
+                    if (i === 4) {
+                        logo = "../../Assets/13123133.png"
+                        porcentagem = "-"
+                        status = "-"
+                        textoBotao = "Indisponível"
+                        posto = "Posto 4"
+                    }
 
-        tabelaHtml += "</tbody>"
+                    tabelaHtml += `
+                    <tr>
+                        <td>
+                        <div class="posto-nome">
+                            <img class="posto-logo" src="${logo}" alt="${posto}">
+                            <span>${posto}</span>
+                        </div>
+                        </td>
+                        <td>
+                        <span class="alert-count">${alertas}</span>
+                        </td>
+                        <td>
+                        <span class="percent-badge ${classePercent}">${percentual}</span>
+                        </td>
+                        <td><span class="${classeStatus}">${status}</span></td>
+                        <td><a href="../Dashboard/index.html"><button class="btn-access">${textoBotao}</button></a></td>
+                    </tr>
+                    `
+                }
 
-        tabela.innerHTML = tabelaHtml
-      })
-      .catch(function (erro) {
-        console.log("Erro ao atualizar KPIs:", erro);
-      });
-  }
+                tabelaHtml += "</tbody>"
 
-  atualizarKpis();
+                tabela.innerHTML = tabelaHtml
+            })
+            .catch(function (erro) {
+                console.log("Erro ao atualizar KPIs:", erro);
+            });
+    }
 
-  setInterval(function () {
     atualizarKpis();
-  }, 3000);
+
+    setInterval(function () {
+        atualizarKpis();
+    }, 3000);
 </script>
 
 </html>

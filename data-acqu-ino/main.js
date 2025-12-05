@@ -36,7 +36,7 @@ port: 3306
 console.log("Modo simulação SEM Arduino ativo.");
 
 setInterval(() => {
-    const sensorPorcentagem = (Math.random() * 10 + 20).toFixed(2);
+    const sensorPorcentagem = (Math.random() * 15 + 5).toFixed(2);
     valoresSensorAnalogico.push(sensorPorcentagem);
     console.log("Simulado:", sensorPorcentagem);
     if (HABILITAR_OPERACAO_INSERIR) {

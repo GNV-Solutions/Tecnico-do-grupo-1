@@ -1,17 +1,16 @@
-/* ===== RESET ===== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
   box-sizing: border-box;
-  font-family: "DM Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
   margin: 0;
   background: #f4f6fb;
   color: #222;
-  font-size: 1.15rem; /* aumentei */
+  font-size: 1.15rem;
 }
 
-/* ===== HEADER ===== */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -33,7 +32,7 @@ body {
 
 .brand {
   font-weight: 700;
-  font-size: 1.8rem; /* maior */
+  font-size: 1.8rem;
   color: #2a9a90;
 }
 
@@ -51,21 +50,21 @@ body {
 }
 
 .helpdesk-btn {
-  background: #f4b400;
+  background: #ffffff;
   border: none;
   padding: 10px 18px;
   border-radius: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 15px;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .helpdesk-btn:hover {
-  background: #237c74;
+  background-color: #ededed;
+  color: rgb(0, 0, 0);
 }
 
-/* ===== CONTAINER ===== */
 .container {
   padding: 3vh 5vw;
   display: flex;
@@ -73,7 +72,6 @@ body {
   gap: 3vh;
 }
 
-/* ===== KPI SECTION ===== */
 .kpi-section {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -109,7 +107,7 @@ body {
 }
 .help-status {
   font-weight: bold;
-  color: #205a11;
+  color: #ffffff;
 }
 
 .kpi-card.red .status-pill {
@@ -123,7 +121,6 @@ body {
   margin-top: 1vh;
 }
 
-/* Barra de progresso */
 .kpi-card.gray .bar-container {
   background: #e9ecef;
   border-radius: 0.6rem;
@@ -172,7 +169,6 @@ body {
   font-weight: 700;
 }
 
-/* ===== GRÁFICO ===== */
 .chart-section {
   background: #ffffff;
   border-radius: 1.5rem;
@@ -209,7 +205,6 @@ body {
   margin-top: 1vh;
 }
 
-/* ===== SEÇÃO INFERIOR ===== */
 .bottom-section {
   display: grid;
   grid-template-columns: 0.45fr 1.55fr;
@@ -217,7 +212,6 @@ body {
   align-items: stretch;
 }
 
-/* ===== INCIDENTES ===== */
 .incident-card {
   background: #ffffff;
   border-radius: 1.3rem;
@@ -262,7 +256,6 @@ body {
 .incident-card li:nth-child(2) strong { color: #ff8400; }
 .incident-card li:nth-child(3) strong { color: #2a9a90; }
 
-/* ===== SENSORES ===== */
 .sensor-card {
   background: #ffffff;
   border-radius: 1.5rem;
@@ -327,7 +320,6 @@ td {
 .warn  { background:#fff3e8; color: #f77f00; }
 .danger{ background:#ffecec; color: #d9534f; }
 
-/* ===== RESPONSIVO ===== */
 @media (max-width: 992px) {
   .kpi-section { grid-template-columns: 1fr 1fr; }
   .bottom-section { grid-template-columns: 1fr; }

@@ -10,12 +10,12 @@ function getResumoPosto(idPosto) {
 
     return database.executar(instrucao).then(res => res[0]);
   };
-function InserirDadosPosto(nomePosto, bandeira, cnpj, rua, bairro) {
+  function InserirDadosPosto(nomePosto, bandeira, cnpj, cep, numero) {
     console.log(`ESTOU TENTANDO INSERIR DADOS POSTO\n \n\t\t >> `);
     var instrucao = `
-      INSERT INTO posto(rua, bairro, cnpj, bandeira)
+      INSERT INTO posto(nomePosto, bandeira, cnpj , cep, numero)
       VALUES
-      ('${rua}', '${bairro}', '${cnpj}', '${bandeira}');
+      ('${nomePosto}', '${bandeira}', '${cnpj}', '${cep}', '${numero}');
     `;
     return database.executar(instrucao);
   }
