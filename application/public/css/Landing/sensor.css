@@ -81,19 +81,19 @@ width: 10em;
   transition: 200ms;
 }
 .leak {
-  background-image: url('../../assets/vazamento-stock.png');
+  background-image: url('../../Assets/vazamento-stock.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 .supply{
-    background-image: url('../../assets/abastecimento-stock.png');
+    background-image: url('../../Assets/abastecimento-stock.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 .alarm{
-    background-image: url('../../assets/alarm-stock.png');
+    background-image: url('../../Assets/alarm-stock.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

@@ -79,7 +79,7 @@ if (HABILITAR_OPERACAO_INSERIR) {
 // este insert irá inserir os dados na tabela "medida"
 await poolBancoDados.execute(
 'INSERT INTO medida (fkSensor, porcentagem_gas) VALUES (1, ?)',
-[sensorPorcentagem - 85]
+[sensorPorcentagem - 5]
 );
 console.log("valores inseridos no banco: ", sensorPorcentagem);
 }
