@@ -1,8 +1,9 @@
+// medida.js (Model)
 var database = require("../database/config");
 
 function getUltimasMedidas(idSensor, limite) {
     console.log("ACESSEI O MEDIDA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function getUltimasMedidas():", idSensor, limite);
-
+    
     var instrucaoSql = `
         SELECT porcentagem_gas, dtHora
         FROM medida
@@ -20,6 +21,7 @@ function getQuantidadeAlertas(idSensor) {
     var instrucaoSql = `
         SELECT COUNT(*) FROM medida
         WHERE dtHora >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+        AND fkSensor = ${idSensor}
 	    AND porcentagem_gas >= 15
     `
 
@@ -28,7 +30,7 @@ function getQuantidadeAlertas(idSensor) {
 
 function inserirMedida(idSensor, gas) {
     console.log("ACESSEI O MEDIDA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function inserirMedida():", idSensor, gas);
-
+    
     var instrucaoSql = `
         INSERT INTO medida (porcentagem_gas, fkSensor)
         VALUES (${gas}, ${idSensor});
